@@ -25,7 +25,7 @@ class PasswordChecker{
 	protected function isStrongEnoughPassword($pass)
 	{
 		$days_to_crack = checkStrength($pass);
-		if($days_to_crack < $required_days)
+		if($days_to_crack < $REQUIRED_MIN_DAYS)
 		{
 			return false;
 		}
