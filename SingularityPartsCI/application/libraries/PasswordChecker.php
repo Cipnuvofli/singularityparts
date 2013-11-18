@@ -44,10 +44,10 @@ class PasswordChecker{
 		$total_combos = pow($alphabet_size, $pass_length);
 		
 		//predict number of days to cracking
-		$seconds_to_crack = $total_combos / $combos_sec;
+		$seconds_to_crack = $total_combos / $COMBOS_PER_SECOND;
 		$days_to_crack = $seconds_to_crack / 3600 / 24;
 		
-		return round($days_to_crack * $avg_strength);
+		return round($days_to_crack * $AVERAGE_STRENGTH_COMPARISON);
 	}
 }
 ?>
