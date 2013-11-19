@@ -1,6 +1,6 @@
 <div id='cssmenu'>
 <ul>
-   <li class='active'><a href='index.html'><span>Home</span></a></li>
+   <li class='active'><a href='/SingularityParts/SingularityPartsCI'><span>Home</span></a></li>
    <li class='has-sub'><a href='#'><span>Products</span></a>
       <ul>
          <li class='has-sub'><a href='#'><span>Product 1</span></a>

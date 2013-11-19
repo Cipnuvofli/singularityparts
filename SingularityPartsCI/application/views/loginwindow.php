@@ -25,7 +25,7 @@ echo ' <p id = "Password">Password: <input type="password" name="Password" /></p
 echo ' <p id = "Login"><input type="submit" value="Log In" /></p>';
 echo '</form>';
 echo '<div id = "LoginLinks">';
-echo ' <a href="recovery.php">Forgot your Password?</a>     <a href="register.php">Register</a> ';
+echo ' <a href="recovery.php">Forgot your Password?</a>     <a href="./register">Register</a> ';
 echo '</div>';
 echo '</div>';
 
