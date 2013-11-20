@@ -5,6 +5,45 @@
  */
 class User_Model extends CI_Model {
 
+			function create_user()
+			{
+						
+								$data['name'] =  $this->input->post('name');
+				$data['Email'] = $this->input->post('usrEmail');
+				$this->db->insert('person', $data);
+				$person_id = $this->db->insert_id();
+						
+				$clear_pass = $this->input->post('Pw');
+				CRYPT_BLOWFISH or die ('No Blowfish found.');	
+				$Blowfish_Pre = '$2a$05$';
+				$Blowfish_End = '$';
+				$Allowed_Chars ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789./';
+				$Chars_Len = 63;
+				$Salt_Length = 21;
+				$salt = "";
+				for($i=0; $i<$Salt_Length; $i++)
+				{
+					$salt .= $Allowed_Chars[mt_rand(0,$Chars_Len)];
+				}
+				$bcrypt_salt = $Blowfish_Pre . $salt . $Blowfish_End;
+				$hashed_pass = crypt($clear_pass, $bcrypt_salt);
+				
+				//$start_date = strtotime("now");
+				//$days_to_expire = $this->PasswordChecker->checkStrength($clear_pass);
+				//$end_date = strtotime("+$days_to_expire days");
+				$password_data = array(
+					'PersonID' => $person_id,
+					'Salt' => $bcrypt_salt,
+					//'start_date' => date('Y-m-d', $start_date),
+					//'end_date' => date('Y-m-d', $end_date),
+					'hash' => $hashed_pass,
+										);
+				
+				$this->db->insert('passwordhashes',$password_data);
+			
+		
+			}
+
 		/**
 		 * This is pseudocode for creating a user.
 		 * Form inputs (REQUIRED unless stated otherwise):
@@ -34,7 +73,7 @@ class User_Model extends CI_Model {
 		 * phone_number: similar to email_address
 		 * phone_type: same as email_type
 		 */
-		 function create_user(){ 
+		 function create_userproto(){ 
 			
 			//DOB
 			$mth = $this->input->post('month');
