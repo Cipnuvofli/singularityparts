@@ -12,5 +12,10 @@
 
 			$this->load->view('Front_view',$data);
 	    }
+		function login()
+		{
+			
+		
+		}
 	}
 ?>

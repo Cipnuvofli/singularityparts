@@ -23,7 +23,8 @@
 			
 			$data['title']="Registration";
 			
-			$this->form_validation->set_rules('name','name','required');
+			$this->form_validation->set_rules('Fname','Firstname','required');
+			$this->form_validation->set_rules('Lname','Lastname','required');
 			$this->form_validation->set_rules('usrEmail','Email','required');
 			$this->form_validation->set_rules('Pw','Password','required');
 			
@@ -34,7 +35,8 @@
 			else
 			{
 				$this->user_model->create_user();
-				$this->load->view('Register/success');
+				$this->load->view('Register');
+				$this->load->view('success');
 			
 			}
 		}

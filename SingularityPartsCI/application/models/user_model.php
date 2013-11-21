@@ -6,11 +6,27 @@
 class User_Model extends CI_Model {
 
 			function create_user()
-			{
-						
-								$data['name'] =  $this->input->post('name');
-				$data['Email'] = $this->input->post('usrEmail');
+			{			
+				$data['first_name'] =  $this->input->post('Fname');
+				$data['last_name'] =  $this->input->post('Lname');
+				$data['user_name'] = $data['first_name'].' '.$data['last_name'];
+				$data['email'] = $this->input->post('usrEmail');
+				$month = $this->input->post('dobm');
+				$day = $this->input->post('dobd');
+				$year= $this->input->post('doby');
+				$date = strtotime($day.'-'.$month.'-'.$year);
+				$data['dob'] = date("Y-m-d", $date);
+				$country = $this->input->post('Country');
+				$data['state_id'] = $this->input->post('state');
+				$data['branch_id'] = 1;
+				$data['vehicle_id'] = 1;
+				if($country === "United States")
+				{
+					$data['state_id'] = $this->input->post('state');
+				}
 				$this->db->insert('person', $data);
+				
+	
 				$person_id = $this->db->insert_id();
 						
 				$clear_pass = $this->input->post('Pw');
@@ -32,14 +48,14 @@ class User_Model extends CI_Model {
 				//$days_to_expire = $this->PasswordChecker->checkStrength($clear_pass);
 				//$end_date = strtotime("+$days_to_expire days");
 				$password_data = array(
-					'PersonID' => $person_id,
+					'person_id' => $person_id,
 					'Salt' => $bcrypt_salt,
 					//'start_date' => date('Y-m-d', $start_date),
 					//'end_date' => date('Y-m-d', $end_date),
 					'hash' => $hashed_pass,
 										);
 				
-				$this->db->insert('passwordhashes',$password_data);
+				$this->db->insert('password_hash',$password_data);
 			
 		
 			}
