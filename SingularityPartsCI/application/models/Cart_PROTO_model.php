@@ -2,11 +2,7 @@
 	/*
 		 * TODO: 
 		 * 0. The actual user interface and the controller. 
-		 * 1. Create a way to easily update the temporary_order 
-			and temporary_order_product tables as the shopping cart changes. 
-			These tables are used to help reduce the chance of a product being "sold out" 
-			before the user gets to it. Note that unless the user remains pretty active on the site,
-			the quantities will not be real-time (so the UI should have a "quantities current as of DATETIME" disclaimer).
+		 * 
 		 * 2. Turning a shopping cart order into an order in the order and order_product tables,
 			and deleting the corresponding shopping cart order. (transaction)
 		 * 3. Adding payment
@@ -18,7 +14,10 @@
 		 * 2. retrieving product ids for a vehicle
 		 * 3. narrowing a list of product ids with search terms (in name or description)
 		 * 4. retrieving facets for a product (name and value)
-		 * 5. 
+		 * 5. updating the temporary_order and temporary_order_product tables as the shopping cart changes. 
+			These tables are used to help reduce the chance of a product being "sold out" 
+			before the user gets to it. Note that unless the user remains pretty active on the site,
+			the quantities will not be real-time (so the UI should have a "quantities current as of DATETIME" disclaimer).
 		 */
 	class Shopping_PROTO_model extends CI_Model
 	{
@@ -215,7 +214,85 @@
 			$query = $this->db->get();
 			return $query;
 		}
-		
+    
+    
+    public function get_temporary_order($session_id)
+     {
+       //check if order exists
+       $this->db->select('id');
+       $this->db->from('temporary_order');
+       $this->db->where('session_id', $session_id);
+       $query = $this->db->get();
+       $order_ids = array_values($query);
+       if(count($order_ids) >= 1) return $order_ids[0];
+       
+       //else insert new temporary_order
+       $this->db->insert('temporary_order', array('session_id' => $session_id));
+       return $this->db->insert_id();
+
+     }
+     
+     public function remove_temporary_order($session_id)
+     {
+       $order_id = get_temporary_order($session_id);
+       $this->db->delete('temporary_order_product', array('temporary_order_id'=>$order_id));
+       $this->db->delete('temporary_order', array('id'=>$order_id));
+     }
+     
+     /**
+      * updates a row in a temporary order
+      */ 
+    public function update_temporary_order($session_id, $product_id, $condition_id, $country_id, $qty)
+     {
+       //create the temporary order if it does not exist
+       $order_id = get_temporary_order($session_id);
+       
+        //the fields to change
+        $record = array('temporary_order_id'=>$order_id, 
+          'product_id'=>$product_id, 
+          'condition_id'=>$condition_id, 
+          'country_id' =>$country_id, 
+          'quantity' => $qty
+         );
+       
+       //check if data exists
+       $this->db->select('*');
+       $this->db->from('temporary_order_product');
+       $this->db->where('temporary_order_id', $order_id);
+       $this->db->where('product_id', $product_id);
+       $query = $this->db->get();
+       
+       //data DNE
+       if($query->num_rows() < 1)
+       {
+         $this->db->insert('temporary_order_product', $record);
+       }
+       
+       //data exists
+       else {
+         $this->db->update('temporary_order_product', $record);
+       }
+       
+     }  
+     
+     
+     public function remove_product_from_temporary_order($session_id, $product_id)
+     {
+       //create the temporary order if it does not exist
+       $order_id = get_temporary_order($session_id);
+       
+       //check if data exists
+       $conditions = array('product_id'=>$product_id, 'temporary_order_id' => $order_id);
+       $this->db->delete('temporary_order_id', $conditions);
+       
+     }
+     
+     
+     public function clear_temporary_order($session_id)
+     {
+         $this->db->delete('temporary_order_product', 
+           array('order_id'=>get_temporary_order($session_id)));
+     }
 	}
 	
 ?>
