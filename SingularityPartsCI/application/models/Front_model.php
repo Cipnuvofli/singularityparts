@@ -37,8 +37,22 @@ class Front_model extends CI_Model
 		$data['Password'] = $this->input->post('Password');
 
 
-		$sql = $this->db->query("SELECT first_name, last_name, salt, hash, email FROM person, password_hash WHERE email = '$Email'");
-		$sqlr = $sql->result()
+		$this->db->select('person_id, salt, hash, email');
+		$this->db->from('person');
+		$this->db->join('password_hash', 'person.id = password_hash.person_id');
+		$this->db->where('email', $Email);
+		$this->db->where('start_date <= ', date('Y-m-d'));
+		$this->db->where('(end_date > ? OR end_date IS NULL)', array(date('Y-m-d')));
+		$sql = $this->db->get();
+		show_error($this->db->last_query());
+		/*$sqlr = $sql->result_array();
+		log_message('debug', 'hello world from ci');
+		log_message('debug', $sqlr->email);
+		log_message('debug', $sqlr->salt);
+		log_message ('debug', $sqlr->hash);
+		log_message ('debug', $sqlr->person_id);
+		
+		
 		$first_name = $sqlr->first_name;
 		$last_name = $sqlr->last_name;
 
@@ -58,9 +72,10 @@ class Front_model extends CI_Model
 			echo '<a href = "Home.php">Return to home page</a>';
 			$this->load->view("Front");
 			
-		}
+		}*/
+		/*
 		mysql_close($con);
-			
+		*/
 			
 	}
 	function logout()
