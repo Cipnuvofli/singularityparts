@@ -24,9 +24,6 @@ class Front_model extends CI_Model
 	function loginDB()
 	{
 		
-		CRYPT_BLOWFISH or die ('<p>No Blowfish found.</p>');
-		$Blowfish_Pre = '$2a$05$';
-		$Blowfish_End = '$';
 		if(isset($_SESSION['loggedin']))
 		{
 			die("Already Logged in!");
@@ -34,10 +31,10 @@ class Front_model extends CI_Model
 		}
 
 		$Email = $this->input->post('Email');
-		$data['Password'] = $this->input->post('Password');
+		$clear_pass = $this->input->post('Password');
 
-
-		$this->db->select('person_id, salt, hash, email');
+		//query
+		$this->db->select('person_id, hash, email');
 		$this->db->from('person');
 		$this->db->join('password_hash', 'person.id = password_hash.person_id');
 		$this->db->where('email', $Email);
@@ -47,6 +44,8 @@ class Front_model extends CI_Model
 
 		//try to get the result
 		$sql_results = $sql->result();
+		
+		//we have nothing; error handling goes here.
 		if(empty($sql_results)) 
 		{
 			show_error('results empty');
@@ -56,41 +55,22 @@ class Front_model extends CI_Model
 		}
 		
 		//get the 0th result (yes, this works)
-		$sqlr = $sql_results[0];
-		
-		//print the 0th result
-		print_r($sqlr);
-		
-		//hash the password?
-		$hashed_pass = crypt($data['Password'], $Blowfish_Pre.$sqlr->salt.$Blowfish_End);
-		
-		//debugging
-		echo("<br/>");
-		echo("<br/>");
-		
-		//the hashed pass
-		echo($hashed_pass);
-		echo("<br/>");
-		echo("<br/>");
-		
-		//the one from the DB
-		echo($sqlr->hash.$sqlr->salt);
-		
-		if($Email == $sqlr->email && $hashed_pass == $sqlr->hash.$sqlr->salt)
+		$sqlr = $sql_results[0];	
+	
+		//are we good?
+		if($Email == $sqlr->email && password_verify($clear_pass, $sqlr->hash))
 		{
-			//show_error('login ok');
-			$_SESSION['loggedin'] = "YES";
-			$_SESSION['email'] = $Email;
-			
-			$this->load->view("Front");
+			//start session
+			$newdata = array(
+                   'person_id'  => $sqlr->person_id,
+                   'logged_in' => TRUE
+               );
+			$this->session->set_userdata($newdata);
+			redirect("");
 		}
 		else
 		{
-			//show_error('login bad');
-			echo '<p>Login Failure</P>';
-			echo '<a href = "Home.php">Return to home page</a>';
-			$this->load->view("Front");
-			
+			redirect("");
 		}
 		
 		/*

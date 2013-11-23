@@ -7,6 +7,7 @@ class User_Model extends CI_Model {
 
 			function create_user()
 			{			
+				$this->load->library('PasswordChecker');
 				$data['first_name'] =  $this->input->post('Fname');
 				$data['last_name'] =  $this->input->post('Lname');
 				$data['email'] = $this->input->post('usrEmail');
@@ -29,26 +30,14 @@ class User_Model extends CI_Model {
 				$person_id = $this->db->insert_id();
 						
 				$clear_pass = $this->input->post('Pw');
-				CRYPT_BLOWFISH or die ('No Blowfish found.');	
-				$Blowfish_Pre = '$2a$05$';
-				$Blowfish_End = '$';
-				$Allowed_Chars ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789./';
-				$Chars_Len = 63;
-				$Salt_Length = 21;
-				$salt = "";
-				for($i=0; $i<$Salt_Length; $i++)
-				{
-					$salt .= $Allowed_Chars[mt_rand(0,$Chars_Len)];
-				}
-				$bcrypt_salt = $Blowfish_Pre . $salt . $Blowfish_End;
-				$hashed_pass = crypt($clear_pass, $bcrypt_salt);
+				$hashed_pass = password_hash($clear_pass, PASSWORD_DEFAULT);
 				
 				$start_date = strtotime("now");
-				//$days_to_expire = $this->PasswordChecker->checkStrength($clear_pass);
-				//$end_date = strtotime("+$days_to_expire days");
+				
+				//$days_to_expire = $this->passwordchecker->checkStrength($clear_pass);
+				//$end_date = strtotime("+'$days_to_expire' days");
 				$password_data = array(
 					'person_id' => $person_id,
-					'Salt' => $bcrypt_salt,
 					'start_date' => date('Y-m-d'),
 					//'end_date' => date('Y-m-d', $end_date),
 					'hash' => $hashed_pass,

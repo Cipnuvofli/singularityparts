@@ -1,6 +1,6 @@
 <?php
 
-if(isset($_SESSION['loggedin']))
+if($this->session->userdata('logged_in'))
 {
         echo '<div id = "loginwindow">';
 		//echo '<h1>First and Last Name</h1>';

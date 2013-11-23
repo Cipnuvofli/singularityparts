@@ -29,13 +29,13 @@
 				if($this->form_validation->run() === FALSE)
                 {
 								
-                                $this->load->view('Register');
-								$this->load->view('Failure');
+                    $this->load->view('Register');
+					$this->load->view('Failure');
                 }
                  else
                 {
-                                $this->Front_model->loginDB();
-                                $this->load->view('Front_view');
+                    $this->Front_model->loginDB();
+              
                                 
                        
                 }
