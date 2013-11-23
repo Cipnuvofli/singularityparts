@@ -43,13 +43,13 @@ class User_Model extends CI_Model {
 				$bcrypt_salt = $Blowfish_Pre . $salt . $Blowfish_End;
 				$hashed_pass = crypt($clear_pass, $bcrypt_salt);
 				
-				//$start_date = strtotime("now");
+				$start_date = strtotime("now");
 				//$days_to_expire = $this->PasswordChecker->checkStrength($clear_pass);
 				//$end_date = strtotime("+$days_to_expire days");
 				$password_data = array(
 					'person_id' => $person_id,
 					'Salt' => $bcrypt_salt,
-					//'start_date' => date('Y-m-d', $start_date),
+					'start_date' => date('Y-m-d'),
 					//'end_date' => date('Y-m-d', $end_date),
 					'hash' => $hashed_pass,
 										);
@@ -87,6 +87,9 @@ class User_Model extends CI_Model {
 		 * phone number:
 		 * phone_number: similar to email_address
 		 * phone_type: same as email_type
+ 		 *
+		 * branch preference:
+		 * branch_id: combo box with all of the branches and their addresses. id returned by post should be the branch id. 
 		 */
 		 function create_userproto(){ 
 			
@@ -175,6 +178,12 @@ class User_Model extends CI_Model {
 			);
 			$this->db->insert('person_phone_number', $phone_join_data);
 			
+			//branch join table
+			$branch_join_data = array(
+				'branch_id' => $this->input->post('branch_id'),
+				'person_id' => $person_id 
+			);
+			$this->db->insert('branch_join_data');
 			//TODO: return stuff?
 		} 
 			
