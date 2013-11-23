@@ -1,6 +1,6 @@
 RewriteEngine On 
 RewriteCond %{SERVER_PORT} 80 
-RewriteRule ^(.*)$ https://localhost/autopartsis/$1 [R,L]
+RewriteRule ^(.*)$ https://localhost/singularitypartsci/$1 [R,L]
 
 RewriteEngine on
 RewriteCond $1 !^(index\.php|css|js|images|assets|uploads|sitebuild|iscaffold|temp|images|robots\.txt)
