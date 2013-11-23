@@ -9,7 +9,6 @@ class User_Model extends CI_Model {
 			{			
 				$data['first_name'] =  $this->input->post('Fname');
 				$data['last_name'] =  $this->input->post('Lname');
-				$data['user_name'] = $data['first_name'].' '.$data['last_name'];
 				$data['email'] = $this->input->post('usrEmail');
 				$month = $this->input->post('dobm');
 				$day = $this->input->post('dobd');

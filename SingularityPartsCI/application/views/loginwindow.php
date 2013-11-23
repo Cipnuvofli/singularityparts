@@ -16,7 +16,7 @@ if(isset($_SESSION['loggedin']))
 else
 {
 echo '<div id = "loginwindow">';
-echo '<form action="index.php/login" method="post">';
+echo form_open('Front/login');
 echo '<p id = "Email">Email: <input type="text" name="Email" /></p>';
 echo ' <p id = "Password">Password: <input type="password" name="Password" /></p>';
 echo ' <p id = "Login"><input type="submit" value="Log In" /></p>';

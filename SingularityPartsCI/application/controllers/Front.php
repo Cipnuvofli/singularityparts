@@ -2,6 +2,7 @@
 	class Front extends CI_controller{
 		function index()
 		{
+			$this->load->helper('form');
 			$this->load->helper('html');
 			$this->load->helper('url');
 			$this->load->model('Front_model');
@@ -33,7 +34,7 @@
                 }
                  else
                 {
-                                $this->Front_model->login();
+                                $this->Front_model->loginDB();
                                 $this->load->view('Front_view');
                                 
                        

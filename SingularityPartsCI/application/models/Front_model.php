@@ -21,8 +21,9 @@ class Front_model extends CI_Model
 		
 	
 	}
-	function login()
+	function loginDB()
 	{
+		
 		CRYPT_BLOWFISH or die ('<p>No Blowfish found.</p>');
 		$Blowfish_Pre = '$2a$05$';
 		$Blowfish_End = '$';
@@ -36,14 +37,14 @@ class Front_model extends CI_Model
 		$data['Password'] = $this->input->post('Password');
 
 
-		$sql = $this->db->query("SELECT first_name, last_name, salt, hash, email FROM person, password_hash WHERE email = $Email");
+		$sql = $this->db->query("SELECT first_name, last_name, salt, hash, email FROM person, password_hash WHERE email = '$Email'");
+		$sqlr = $sql->result()
+		$first_name = $sqlr->first_name;
+		$last_name = $sqlr->last_name;
 
-		$first_name = $sql->first_name;
-		$last_name = $sql->last_name;
+		$hashed_pass = crypt($data['Password'], $Blowfish_Pre.$sqlr->salt.$Blowfish_End);
 
-		$hashed_pass = crypt($data['Password'], $Blowfish_Pre.$sql->salt.$Blowfish_End);
-
-		if($Email == $sql->email && $hashed_pass == $sql->hash.$sql->salt)
+		if($Email == $sqlr->email && $hashed_pass == $sqlr->hash.$sqlr->salt)
 		{
 			
 			$_SESSION['loggedin'] = "YES";
