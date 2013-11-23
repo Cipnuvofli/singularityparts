@@ -23,13 +23,13 @@ class Front_model extends CI_Model
 	}
 	function loginDB()
 	{
-		
-		if(isset($_SESSION['loggedin']))
+		//are we already logged in?
+		if($this->session->userdata('logged_in'))
 		{
-			die("Already Logged in!");
-
+			redirect('');
 		}
-
+		
+		//get the information
 		$Email = $this->input->post('Email');
 		$clear_pass = $this->input->post('Password');
 
@@ -61,28 +61,31 @@ class Front_model extends CI_Model
 		if($Email == $sqlr->email && password_verify($clear_pass, $sqlr->hash))
 		{
 			//start session
+			//initially all we really need is the id of the person
+			//and whether or not he/she is logged in.
 			$newdata = array(
                    'person_id'  => $sqlr->person_id,
                    'logged_in' => TRUE
                );
 			$this->session->set_userdata($newdata);
+			
+			//redirect to home page
 			redirect("");
 		}
 		else
 		{
+			//redirect to home page
 			redirect("");
 		}
-		
-		/*
-		mysql_close($con);
-		*/
 	
-			
 	}
 	function logout()
 	{
+		//destroy the session
+		$this->session->sess_destroy();
 	
-	
+		//redirect to home page
+		redirect("");
 	}
 
 
