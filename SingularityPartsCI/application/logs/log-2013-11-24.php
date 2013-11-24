@@ -4883,3 +4883,77 @@ DEBUG - 2013-11-24 23:52:08 --> Form Validation Class Initialized
 DEBUG - 2013-11-24 23:52:08 --> File loaded: application/views/Front_view.php
 DEBUG - 2013-11-24 23:52:08 --> Final output sent to browser
 DEBUG - 2013-11-24 23:52:08 --> Total execution time: 0.2030
+DEBUG - 2013-11-24 23:56:22 --> Config Class Initialized
+DEBUG - 2013-11-24 23:56:22 --> Hooks Class Initialized
+DEBUG - 2013-11-24 23:56:22 --> Utf8 Class Initialized
+DEBUG - 2013-11-24 23:56:22 --> UTF-8 Support Enabled
+DEBUG - 2013-11-24 23:56:22 --> URI Class Initialized
+DEBUG - 2013-11-24 23:56:22 --> Router Class Initialized
+DEBUG - 2013-11-24 23:56:22 --> No URI present. Default controller set.
+DEBUG - 2013-11-24 23:56:22 --> Output Class Initialized
+DEBUG - 2013-11-24 23:56:22 --> Security Class Initialized
+DEBUG - 2013-11-24 23:56:22 --> Input Class Initialized
+DEBUG - 2013-11-24 23:56:22 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-11-24 23:56:22 --> Language Class Initialized
+DEBUG - 2013-11-24 23:56:22 --> Loader Class Initialized
+DEBUG - 2013-11-24 23:56:22 --> Helper loaded: url_helper
+DEBUG - 2013-11-24 23:56:22 --> Database Driver Class Initialized
+DEBUG - 2013-11-24 23:56:23 --> Session Class Initialized
+DEBUG - 2013-11-24 23:56:23 --> Helper loaded: string_helper
+DEBUG - 2013-11-24 23:56:23 --> Session routines successfully run
+DEBUG - 2013-11-24 23:56:23 --> Controller Class Initialized
+DEBUG - 2013-11-24 23:56:23 --> Helper loaded: form_helper
+DEBUG - 2013-11-24 23:56:23 --> Helper loaded: html_helper
+DEBUG - 2013-11-24 23:56:23 --> Model Class Initialized
+DEBUG - 2013-11-24 23:56:23 --> Model Class Initialized
+DEBUG - 2013-11-24 23:56:23 --> Form Validation Class Initialized
+DEBUG - 2013-11-24 23:56:23 --> File loaded: application/controllers/Cart.php
+DEBUG - 2013-11-24 23:56:23 --> File loaded: application/controllers/Dashboard.php
+DEBUG - 2013-11-24 23:56:23 --> File loaded: application/controllers/Manufacturer.php
+DEBUG - 2013-11-24 23:56:23 --> File loaded: application/controllers/OrderHistory.php
+DEBUG - 2013-11-24 23:56:23 --> File loaded: application/controllers/Product_GC.php
+DEBUG - 2013-11-24 23:56:23 --> File loaded: application/controllers/Register.php
+DEBUG - 2013-11-24 23:56:23 --> File loaded: application/controllers/Role.php
+DEBUG - 2013-11-24 23:56:23 --> File loaded: application/controllers/WorkHistory.php
+DEBUG - 2013-11-24 23:56:23 --> File loaded: application/controllers/employees.php
+DEBUG - 2013-11-24 23:56:23 --> Model Class Initialized
+DEBUG - 2013-11-24 23:56:23 --> File loaded: application/views/Front_view.php
+DEBUG - 2013-11-24 23:56:23 --> Final output sent to browser
+DEBUG - 2013-11-24 23:56:23 --> Total execution time: 0.5460
+DEBUG - 2013-11-24 23:58:47 --> Config Class Initialized
+DEBUG - 2013-11-24 23:58:47 --> Hooks Class Initialized
+DEBUG - 2013-11-24 23:58:47 --> Utf8 Class Initialized
+DEBUG - 2013-11-24 23:58:47 --> UTF-8 Support Enabled
+DEBUG - 2013-11-24 23:58:48 --> URI Class Initialized
+DEBUG - 2013-11-24 23:58:48 --> Router Class Initialized
+DEBUG - 2013-11-24 23:58:48 --> No URI present. Default controller set.
+DEBUG - 2013-11-24 23:58:48 --> Output Class Initialized
+DEBUG - 2013-11-24 23:58:48 --> Security Class Initialized
+DEBUG - 2013-11-24 23:58:48 --> Input Class Initialized
+DEBUG - 2013-11-24 23:58:48 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-11-24 23:58:48 --> Language Class Initialized
+DEBUG - 2013-11-24 23:58:48 --> Loader Class Initialized
+DEBUG - 2013-11-24 23:58:48 --> Helper loaded: url_helper
+DEBUG - 2013-11-24 23:58:48 --> Database Driver Class Initialized
+DEBUG - 2013-11-24 23:58:48 --> Session Class Initialized
+DEBUG - 2013-11-24 23:58:48 --> Helper loaded: string_helper
+DEBUG - 2013-11-24 23:58:48 --> Session routines successfully run
+DEBUG - 2013-11-24 23:58:48 --> Controller Class Initialized
+DEBUG - 2013-11-24 23:58:48 --> Helper loaded: form_helper
+DEBUG - 2013-11-24 23:58:48 --> Helper loaded: html_helper
+DEBUG - 2013-11-24 23:58:48 --> Model Class Initialized
+DEBUG - 2013-11-24 23:58:48 --> Model Class Initialized
+DEBUG - 2013-11-24 23:58:48 --> Form Validation Class Initialized
+DEBUG - 2013-11-24 23:58:48 --> File loaded: application/controllers/Cart.php
+DEBUG - 2013-11-24 23:58:48 --> File loaded: application/controllers/Dashboard.php
+DEBUG - 2013-11-24 23:58:48 --> File loaded: application/controllers/Manufacturer.php
+DEBUG - 2013-11-24 23:58:48 --> File loaded: application/controllers/OrderHistory.php
+DEBUG - 2013-11-24 23:58:48 --> File loaded: application/controllers/Product_GC.php
+DEBUG - 2013-11-24 23:58:48 --> File loaded: application/controllers/Register.php
+DEBUG - 2013-11-24 23:58:48 --> File loaded: application/controllers/Role.php
+DEBUG - 2013-11-24 23:58:48 --> File loaded: application/controllers/WorkHistory.php
+DEBUG - 2013-11-24 23:58:48 --> File loaded: application/controllers/employees.php
+DEBUG - 2013-11-24 23:58:48 --> Model Class Initialized
+DEBUG - 2013-11-24 23:58:48 --> File loaded: application/views/Front_view.php
+DEBUG - 2013-11-24 23:58:48 --> Final output sent to browser
+DEBUG - 2013-11-24 23:58:48 --> Total execution time: 0.4850
