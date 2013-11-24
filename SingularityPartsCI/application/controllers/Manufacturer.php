@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
  
-class Product_GC extends CI_Controller {
+class Manufacturer extends CI_Controller {
  
 	private $hasFront = false;
 	function __construct()
@@ -49,7 +49,7 @@ class Product_GC extends CI_Controller {
 		//do we have access?
 		if(!$this->RBAC_model->has_permission(
 				$this->session->userdata('person_id'), 
-				'product',
+				'manufacturer',
 				array(	
 					'role_permission.can_read' => TRUE, 
 					'role_permission.can_add'=>TRUE,
@@ -65,9 +65,9 @@ class Product_GC extends CI_Controller {
 		//show stuff
 		$this->showFront();
 		$this->load->library('Grocery_CRUD');
-        $this->grocery_crud->set_table('product');
+        $this->grocery_crud->set_table('manufacturer');
         $output = $this->grocery_crud->render();
-		$this->load->view('grocery_crud_view',$output);
+		$this->load->view('grocery_crud_view',$output);    
     }
 }
  
