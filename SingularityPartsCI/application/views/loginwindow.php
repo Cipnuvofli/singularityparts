@@ -9,7 +9,7 @@ if($this->session->userdata('logged_in'))
 		//echo '<p id =  "Addproduct">'. anchor('Products', 'Products', 'title="Products"').'</p>';
 		//echo '<p id = "Employees"> '. anchor('Employees', 'Employees', 'title="Employees"').'</p>';
 		
-		echo '<p id = "Login"><a href = "index.php/logout">Log out</a></p>';
+		echo '<p id = "Login"><a href = "index.php/Front/logout">Log out</a></p>';
         echo '</div>';
 }
 

@@ -12,7 +12,8 @@
  
  
 	}
-	function index()
+	
+	function load_stuff()
 	{
 		$this->load->helper('form');
 		$this->load->helper('html');
@@ -23,16 +24,15 @@
 		$data['page_title'] = "Singularity Parts";
 
 		$this->load->view('Front_view',$data);
+	}
+	
+	function index()
+	{
+		$this->load_stuff();
     }
 	function login()
 	{
-		$this->load->helper('form');
-		$this->load->library('form_validation');
-        $this->load->helper('url');
-        $this->load->helper('html');
-        $this->load->model('Front_model');
-						
-		$data['title']="Singularity Parts";
+		$this->load_stuff();
 
 		$this->form_validation->set_rules('Email','Email','required');
         $this->form_validation->set_rules('Password','Password','required');
@@ -47,6 +47,12 @@
             $this->Front_model->loginDB();                       
         }
 		
+	}
+	
+	function logout()
+	{
+		$this->load_stuff();
+		$this->Front_model->logout();
 	}
 }
 ?>
