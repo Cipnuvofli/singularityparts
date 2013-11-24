@@ -17,6 +17,13 @@
  *
  * along with the name of the table and the id of the role. 
  * The permissions for each job are stored in the job_role table. 
+ 
+ * Summary of the algorithm:
+Find current work history of person (select from work_history)
+Get known role for current work history (join with job_role)
+Get permissions for roles (join on role_permission)
+narrow down by required permissions, date constraints, etc.
+if we have rows, then we are good.
  */
 class RBAC_model extends CI_model
 {
@@ -81,7 +88,6 @@ class RBAC_model extends CI_model
 	 */
 	public function has_permission($person_id, $table_name, $permissions)
 	{
-		$roles = get_roles($person_id);
 		$this->db->select('*');
 		$this->db->from('work_history');
 		
@@ -96,7 +102,9 @@ class RBAC_model extends CI_model
 		}
 		$this->db->where('(start_date <= CURDATE())');
 		$this->db->where('(end_date > CURDATE() or end_date IS NULL)');
-		$this->db->get();
+		$this->db->where('work_history.person_id', $person_id);
+		$query = $this->db->get();
+		echo $this->db->last_query();
 		$num_results = count($query->result());
 		return ($num_results > 0);
 	}
