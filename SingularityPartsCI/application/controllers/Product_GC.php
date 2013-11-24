@@ -87,7 +87,22 @@ class Product_GC extends CI_Controller {
 		$this->load->library('Grocery_CRUD');
         $this->grocery_crud->set_table('role');
         $output = $this->grocery_crud->render();
-		$this->load->view('grocery_crud_view',$output);
+		$this->load->view('Product',$output);
     }
+	function createproduct()
+	{
+				$data['name'] =  $this->input->post('name');
+				$data['manufacturer'] =  $this->input->post('manufacturer');
+				$data['category'] = $this->input->post('category');
+				$data['price'] = $this->input->post('price');
+				$data['category'] = $this->input->post('category');
+				$data['category'] = $this->input->post('category');
+				$data['category'] = $this->input->post('category');
+				$data['category'] = $this->input->post('category');
+				$data['category'] = $this->input->post('category');
+				$data['category'] = $this->input->post('category');
+	
+	
+	}
 }
  

@@ -2,15 +2,20 @@
 
 if($this->session->userdata('logged_in'))
 {
-        echo '<div id = "loginwindow">';
-		//echo '<h1>First and Last Name</h1>';
+	include "Dashboard_view.php";
+	
+      /*  echo '<div id = "loginwindow">';
+		echo '<p id = "Username">'.$this->session->userdata('first_name').' '.$this->session->userdata('last_name').'</p>';
+		echo '<div id = "LoginLinks">';
 		echo '<p id = "info">'. anchor('Account Information', 'Account Information', 'title="Account Information"').'</p>';
-		echo '<p id = "Orders">'. anchor('Orders', 'Orders', 'title="Orders"') .'</p>';
-		//echo '<p id =  "Addproduct">'. anchor('Products', 'Products', 'title="Products"').'</p>';
-		//echo '<p id = "Employees"> '. anchor('Employees', 'Employees', 'title="Employees"').'</p>';
-		
-		echo '<p id = "Login"><a href = "index.php/Front/logout">Log out</a></p>';
-        echo '</div>';
+		echo '<p id = "Orders">'. anchor('OrderHistory', 'Orders', 'title="Orders"') .'</p>';
+		echo '<p id = "Shopping Cart">'.anchor('Cart', 'Shopping Cart', 'title="Shopping Cart"').'</p>';
+		echo '<p id =  "Addproduct">'. anchor('Product_gc', 'Product', 'title="Products"').'</p>';
+		echo '<p id = "Employees"> '. anchor('Employees', 'Employees', 'title="Employees"').'</p>';
+		echo '<p id = "Login">'.anchor("Front/logout", "logout", 'title="logout"').'</p>';
+		echo '</div>';
+
+        echo '</div>';*/
 }
 
 else

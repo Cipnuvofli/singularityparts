@@ -1,4 +1,4 @@
-<div id="dashboard_customer">
+<div id="loginwindow">
 <h2>Customer Mode</h2>
 <ul>
 	<?php foreach($customer_controller_arr as $controller): ?>
@@ -11,7 +11,7 @@
 </ul>
 </div>
 
-<div id="dashboard_store">
+<div id="loginwindow">
 <h2>Store Mode</h2>
 <ul>
 	<?php foreach($store_controller_arr as $controller): ?>
