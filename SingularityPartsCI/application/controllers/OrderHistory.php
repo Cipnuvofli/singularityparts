@@ -1,6 +1,25 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class OrderHistory extends CI_Controller{
 	
+	public static function has_access()
+	{
+		$CI = get_instance();
+		
+		//check if login ok
+		if(!$CI->session->userdata('logged_in') 
+			|| !$CI->session->userdata('person_id')) return false;
+		else return true;
+	}
+	
+	public static function is_store_mode()
+	{
+		return FALSE;
+	}
+	
+	public static function get_controller_name()
+	{
+		return 'View Your Order History';
+	}
 	
 	function index()
 	{
@@ -8,12 +27,7 @@ class OrderHistory extends CI_Controller{
 		$this->load->helper('html');
 		$this->load->helper('url');
 		
-		//check if login ok
-		if(!$this->session->userdata('logged_in') || !$this->session->userdata('person_id'))
-		{
-			//insert real login fail code here
-			redirect('');
-		}
+		if(!self::has_access()) redirect('');
 		
 		//load the standard models and views
 		$this->load->model('Front_model');

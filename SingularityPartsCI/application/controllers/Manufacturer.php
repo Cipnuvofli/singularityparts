@@ -24,6 +24,12 @@ class Manufacturer extends CI_Controller {
 	public static function has_access()
 	{
 		$CI = get_instance();
+		
+		//check logged in
+		if(!$CI->session->userdata('person_id') || 
+			!$CI->session->userdata('logged_in')) return false;
+		
+		//check access
 		$CI->load->model('RBAC_model');
 		if(!$CI->RBAC_model->has_permission(
 				$CI->session->userdata('person_id'), 
@@ -74,11 +80,7 @@ class Manufacturer extends CI_Controller {
     function index()
     {
 		$this->load->library('Grocery_CRUD');
-		$this->load->model('RBAC_model');
 		$this->showFront();
-		
-		//are we logged in?
-		if(!$this->session->userdata('person_id') || !$this->session->userdata('logged_in')) redirect('');
 
 		//do we have access?
 		if(!self::has_access()) redirect('');

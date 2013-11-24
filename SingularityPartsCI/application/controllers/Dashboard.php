@@ -15,6 +15,7 @@
  */
 class Dashboard extends CI_Controller {
 	private $hasFront = false;
+	private $controller_arr = array();
 	
 	function loadStuff()
 	{
@@ -22,6 +23,64 @@ class Dashboard extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->helper('html');
 		$this->load->library('ControllerList');
+	}
+	
+	private function get_dash_data($should_be_store_mode)
+	{
+		$this->loadStuff();
+		$this->showFront();
+		
+		//get all controllers
+		$controllers = $this->controllerlist->getControllers();
+		
+		//do any have the methods we need
+		foreach($controllers as $controller_name=>$controller)
+		{
+			//we have found it
+			if(in_array('has_access', $controller) 
+				&& in_array('get_controller_name', $controller) 
+				&& in_array('is_store_mode', $controller))
+			{
+				//obtain methods
+				$ctrl = new ReflectionClass($controller_name);
+				$has_access = $ctrl->getMethod('has_access');
+				$get_controller_name = $ctrl->getMethod('get_controller_name');
+				$is_store_mode = $ctrl->getMethod('is_store_mode');
+				
+				//invoke methods
+				$access_result = $has_access->invoke(null);
+				$printable_name = $get_controller_name->invoke(null);
+				$store_mode = $is_store_mode->invoke(null);
+				
+				//we have access
+				if($access_result && $store_mode == $should_be_store_mode)
+				{
+					//add to name
+					$controller_value = array(
+						'print_name' => $printable_name, 
+						'link_name'=>$controller_name
+					);
+					$this->controller_arr[] = $controller_value;
+				}
+			}
+		}
+	}
+	
+	function customer_mode()
+	{
+		$this->get_dash_data(FALSE);
+		$data['customer_controller_arr'] = $this->controller_arr;
+		if(empty($this->controller_arr)) redirect('');
+		else $this->load->view('Dashboard_view', $data);
+		
+	}
+	
+	function store_mode()
+	{
+		$this->get_dash_data(TRUE);
+		$data['store_controller_arr'] = $this->controller_arr;
+		if(empty($this->controller_arr)) redirect('');
+		else $this->load->view('Dashboard_view', $data);
 	}
 	
 	function showFront()
@@ -45,52 +104,9 @@ class Dashboard extends CI_Controller {
 		$this->loadStuff();
 		$this->showFront();
 		
-		//get all controllers
-		$controllers = $this->controllerlist->getControllers();
-		$store_controller_arr = array();
-		$customer_controller_arr = array();
+		//assume customer mode
+		$this->customer_mode();
 		
-		//do any have the methods we need
-		foreach($controllers as $controller_name=>$controller)
-		{
-			//we have found it
-			if(in_array('has_access', $controller) 
-				&& in_array('get_controller_name', $controller) 
-				&& in_array('is_store_mode', $controller))
-			{
-				//obtain methods
-				$ctrl = new ReflectionClass($controller_name);
-				$has_access = $ctrl->getMethod('has_access');
-				$get_controller_name = $ctrl->getMethod('get_controller_name');
-				$is_store_mode = $ctrl->getMethod('is_store_mode');
-				
-				//invoke methods
-				$access_result = $has_access->invoke(null);
-				$printable_name = $get_controller_name->invoke(null);
-				$store_mode = $is_store_mode->invoke(null);
-				
-				//we have access
-				if($access_result)
-				{
-					//add to name
-					$controller_value = array(
-						'print_name' => $printable_name, 
-						'link_name'=>$controller_name
-					);
-					
-					//add to appropriate mode
-					if($store_mode)
-						$store_controller_arr[] = $controller_value;
-					else
-						$customer_controller_arr[] = $controller_value;
-				}
-			}
-		}
-		
-		//load the dashboard view
-		$data['store_controller_arr'] = $store_controller_arr;
-		$data['customer_controller_arr'] = $customer_controller_arr;
-		$this->load->view('Dashboard_view', $data);
 	}
 }
 

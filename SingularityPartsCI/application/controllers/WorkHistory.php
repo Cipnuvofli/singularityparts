@@ -1,7 +1,41 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
  
 class WorkHistory extends CI_Controller {
- 
+	
+	public static function has_access()
+	{
+		$CI = get_instance();
+		
+		//check if login ok
+		if(!$CI->session->userdata('logged_in') 
+			|| !$CI->session->userdata('person_id')) return false;
+			
+		//check access control
+		$CI->load->model('RBAC_model');
+		if(!$CI->RBAC_model->has_permission(
+				$CI->session->userdata('person_id'), 
+				'work_history',
+				array(	
+					'role_permission.can_read' => TRUE, 
+					'role_permission.can_add'=>TRUE,
+					'role_permission.can_modify' => TRUE,
+					'role_permission.can_delete' => TRUE,
+				)
+			)
+		) return false;
+		else return true;
+	}
+	
+	public static function is_store_mode()
+	{
+		return TRUE;
+	}
+	
+	public static function get_controller_name()
+	{
+		return 'View Work History';
+	}
+	
 	private $hasFront = false;
 	function __construct()
     {
@@ -40,24 +74,8 @@ class WorkHistory extends CI_Controller {
 		$this->load->model('RBAC_model');
 		$this->showFront();
 		
-		//are we logged in?
-		if(!$this->session->userdata('person_id') || !$this->session->userdata('logged_in'))
-		{
-			redirect('');
-		}
-
-		//do we have access?
-		if(!$this->RBAC_model->has_permission(
-				$this->session->userdata('person_id'), 
-				'work_history',
-				array(	
-					'role_permission.can_read' => TRUE, 
-					'role_permission.can_add'=>TRUE,
-					'role_permission.can_modify' => TRUE,
-					'role_permission.can_delete' => TRUE,
-				)
-			)
-		)
+		//do we have access
+		if(!self::has_access())
 		{
 			redirect('');
 		}
