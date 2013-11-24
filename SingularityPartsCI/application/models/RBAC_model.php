@@ -105,6 +105,7 @@ class RBAC_model extends CI_model
 		$this->db->where('work_history.person_id', $person_id);
 		$query = $this->db->get();
 		$num_results = count($query->result());
+		
 		return ($num_results > 0);
 	}
 	

@@ -9,7 +9,6 @@ class Manufacturer extends CI_Controller {
  
         //load stuff
         $this->load->database();
-        $this->load->helper('url');
 		$this->load->helper('form');
 		$this->load->helper('html');
 		$this->load->helper('url');
@@ -18,6 +17,39 @@ class Manufacturer extends CI_Controller {
 		//show stuff
 		$this->showFront();
     }
+	
+	/**
+	 * Returns true if we have access.
+	 */
+	public static function has_access()
+	{
+		$CI = get_instance();
+		$CI->load->model('RBAC_model');
+		if(!$CI->RBAC_model->has_permission(
+				$CI->session->userdata('person_id'), 
+				'manufacturer',
+				array(	
+					'role_permission.can_read' => TRUE, 
+					'role_permission.can_add'=>TRUE,
+					'role_permission.can_modify' => TRUE,
+					'role_permission.can_delete' => TRUE,
+					
+				)
+			)
+		)
+		{
+			return false;
+		}
+		else return true;
+	}
+	
+	/**
+	 * Returns a printable name for the controller.
+	 */ 
+	public static function get_controller_name()
+	{
+		return 'Manufacturer';
+	}
 	
 	function showFront()
 	{
@@ -41,33 +73,15 @@ class Manufacturer extends CI_Controller {
 		$this->showFront();
 		
 		//are we logged in?
-		if(!$this->session->userdata('person_id') || !$this->session->userdata('logged_in'))
-		{
-			redirect('');
-		}
+		if(!$this->session->userdata('person_id') || !$this->session->userdata('logged_in')) redirect('');
 
 		//do we have access?
-		if(!$this->RBAC_model->has_permission(
-				$this->session->userdata('person_id'), 
-				'manufacturer',
-				array(	
-					'role_permission.can_read' => TRUE, 
-					'role_permission.can_add'=>TRUE,
-					'role_permission.can_modify' => TRUE,
-					'role_permission.can_delete' => TRUE,
-				)
-			)
-		)
-		{
-			redirect('');
-		}
+		if(!self::has_access()) redirect('');
 		
-		//show stuff
-		$this->showFront();
+		//load view
 		$this->load->library('Grocery_CRUD');
         $this->grocery_crud->set_table('manufacturer');
         $output = $this->grocery_crud->render();
-		$this->load->view('grocery_crud_view',$output);    
+		$this->load->view('grocery_crud_view',$output);
     }
 }
- 
