@@ -51,6 +51,11 @@ class Manufacturer extends CI_Controller {
 		return 'Manufacturer';
 	}
 	
+	public static function is_store_mode()
+	{
+		return TRUE;
+	}
+	
 	function showFront()
 	{
 		if($this->hasFront) return;

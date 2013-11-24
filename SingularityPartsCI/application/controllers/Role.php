@@ -46,6 +46,11 @@ class Role extends CI_Controller {
 		else return true;
 	}
 	
+	public static function is_store_mode()
+	{
+		return TRUE;
+	}
+	
 	/**
 	 * Returns a printable name for the controller.
 	 */ 
