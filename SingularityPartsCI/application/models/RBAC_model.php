@@ -104,7 +104,6 @@ class RBAC_model extends CI_model
 		$this->db->where('(end_date > CURDATE() or end_date IS NULL)');
 		$this->db->where('work_history.person_id', $person_id);
 		$query = $this->db->get();
-		echo $this->db->last_query();
 		$num_results = count($query->result());
 		return ($num_results > 0);
 	}
