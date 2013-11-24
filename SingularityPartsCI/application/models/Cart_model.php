@@ -345,7 +345,7 @@
 			'is_remote'=>TRUE,
 			'person_id'=>$person_id,
 			'order_date'=>date('Y-m-d'),
-		)
+		);
 		//this is supposed to be a != null check
 		if($branch_id)
 		{
