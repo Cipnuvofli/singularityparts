@@ -27,6 +27,25 @@
 	<?php endforeach; ?>
 </table>
 
+<!-- shipped orders -->
+<h2>Shipped Orders</h2>
+<table id="shipped">
+<tr>
+		<th>Order ID</th>
+		<th>Shipping Tracking</th>
+		<th>Shipping Method</th>
+		<th>Shipping Date</th>
+	</tr>
+	<?php foreach($shipped_orders as $row): ?>
+	<tr>
+		<td><?php echo $row->order_id; ?></td>
+		<td><?php echo $row->shipping_tracking; ?></td>
+		<td><?php echo $row->shipping_method; ?></td>
+		<td><?php echo $row->shipping_date; ?></td>
+	</tr>
+	<?php endforeach; ?>
+</table>
+
 <!-- cancellations -->
 <h2>Cancellations</h2>
 <table id="cancellations">

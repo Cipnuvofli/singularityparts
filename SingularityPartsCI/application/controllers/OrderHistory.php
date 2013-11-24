@@ -27,6 +27,7 @@ class OrderHistory extends CI_Controller{
 	{
 		$this->load->model('OrderHistory_model');
 		$data['orders'] = $this->OrderHistory_model->get_orders($this->session->userdata('person_id'));
+		$data['shipped_orders'] = $this->OrderHistory_model->get_shipped_orders($this->session->userdata('person_id'));
 		$data['returns'] = $this->OrderHistory_model->get_returned_items($this->session->userdata('person_id'));
 		$data['cancellations'] = $this->OrderHistory_model->get_cancelled_orders($this->session->userdata('person_id'));
 		$this->load->view('OrderHistory_view', $data);

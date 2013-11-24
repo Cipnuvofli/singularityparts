@@ -41,7 +41,11 @@ class OrderHistory_model extends CI_Model
 				AND ( 
 					`product_price`.`end_date` > `order`.`order_date` 
 					OR `product_price`.`end_date` IS NULL 
-				) 
+				)
+				AND (`order`.`id` NOT IN (
+					SELECT `order_cancellation`.`order_id` FROM `order_cancellation`
+					)
+				)
 				AND (`order`.`person_id` = ?)
 			', array($person_id));
 		return $sql_res->result();
@@ -150,6 +154,19 @@ class OrderHistory_model extends CI_Model
 		
 	}
 	
-	
+	function get_shipped_orders($person_id)
+	{
+		$this->db->select(
+			'order.id AS order_id,
+			order_shipping.shipping_date AS shipping_date,
+			order_shipping.shipping_tracking AS shipping_tracking,
+			order_shipping.shipping_method AS shipping_method'
+		);
+		$this->db->from('order');
+		$this->db->join('order_shipping', 'order_shipping.order_id = order.id');
+		$this->db->where('order.person_id', $person_id);
+		$sql_res = $this->db->get();
+		return $sql_res->result();
+	}
 }
 ?>
