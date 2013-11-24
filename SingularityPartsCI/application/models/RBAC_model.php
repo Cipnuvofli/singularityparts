@@ -6,14 +6,14 @@
  * Right now, each job can have many roles, 
  * and each role can have many permissions.
  * Permissions are in the role_permission table and consist of the aptly-named:
- * 'can_read' 
- * 'can_add'
- * 'can_modify'
- * 'can_delete'
- * 'can_grant_add'
- * 'can_grant_read'
- * 'can_grant_modify'
- * 'can_grant_delete'
+ * 'role_permission.can_read' 
+ * 'role_permission.can_add'
+ * 'role_permission.can_modify'
+ * 'role_permission.can_delete'
+ * 'role_permission.can_grant_add'
+ * 'role_permission.can_grant_read'
+ * 'role_permission.can_grant_modify'
+ * 'role_permission.can_grant_delete'
  *
  * along with the name of the table and the id of the role. 
  * The permissions for each job are stored in the job_role table. 
@@ -68,14 +68,14 @@ class RBAC_model extends CI_model
 	/**
 	 * Gets the permissions of a role for a table or model, 
 	 * given the role ID, the table/model name, and an array with any of the following keys (values of these keys are boolean):
-	 * 'can_read' 
-	 * 'can_add'
-	 * 'can_modify'
-	 * 'can_delete'
-	 * 'can_grant_add'
-	 * 'can_grant_read'
-	 * 'can_grant_modify'
-	 * 'can_grant_delete'
+	 * 'role_permission.can_read' 
+	 * 'role_permission.can_add'
+	 * 'role_permission.can_modify'
+	 * 'role_permission.can_delete'
+	 * 'role_permission.can_grant_add'
+	 * 'role_permission.can_grant_read'
+	 * 'role_permission.can_grant_modify'
+	 * 'role_permission.can_grant_delete'
 	 * The array MUST NOT have any other keys, and the array MUST NOT have any non-boolean values.
 	 * Returns true if the user has a role that has all of the permissions for the table, otherwise false.
 	 */
@@ -83,66 +83,40 @@ class RBAC_model extends CI_model
 	{
 		$roles = get_roles($person_id);
 		$this->db->select('*');
-		$this->db->from('role_permission');
+		$this->db->from('work_history');
+		
+		//get jobs
+		$this->db->join('job_role', 'work_history.job_id = job_role.job_id');
+		
+		//get role entries
+		$this->db->join('role_permission', 'role_permission.role_id = job_role.role_id');
 		$this->db->where('table_name', $table_name);
 		 foreach ($permissions as $key => $val) {
 			$this->db->where($key, $val);
 		}
-		$this->db->where_in('role_id', $roles);
+		$this->db->where('(start_date <= CURDATE())');
+		$this->db->where('(end_date > CURDATE() or end_date IS NULL)');
 		$this->db->get();
 		$num_results = count($query->result());
 		return ($num_results > 0);
 	}
 	
 	/**
-	 * Gets the roles given a person ID. 
-	 */
-	public function get_roles($person_id)
-	{
-		$jobs = get_jobs_by_person($person_id);
-		$this->db->select('role_id');
-		$this->db->from('job_role');
-		foreach($jobs as $job)
-		{
-			$this->db->or_where('job_id', $job);
-		}
-		$this->db->get();
-		return array_values($query->result());
-	}
-	
-	/**
-	 * Gets the jobs by person ID.
-	 */
-	public function get_jobs_by_person($person_id)
-	{
-		$this->db->select('job_id');
-		$this->db->from('work_history');
-		$curr_date = date('Y-m-d');
-		$this->db->where('person_id=? AND start_date <=? AND(end_date>? OR end_date IS NULL)', array(
-			$person_id, $curr_date, $curr_date
-		));
-		$this->db->get();
-		return array_values($query->result());
-		
-	}
-	
-	
-	
-	/**
 	 * Changes the permissions of a role for a table or model, 
 	 * given the role ID, the table/model name, and an array with ALL of the following booleans:
-	 * 'can_read' 
-	 * 'can_add'
-	 * 'can_modify'
-	 * 'can_delete'
-	 * 'can_grant_add'
-	 * 'can_grant_read'
-	 * 'can_grant_modify'
-	 * 'can_grant_delete'
+	 * 'role_permission.can_read' 
+	 * 'role_permission.can_add'
+	 * 'role_permission.can_modify'
+	 * 'role_permission.can_delete'
+	 * 'role_permission.can_grant_add'
+	 * 'role_permission.can_grant_read'
+	 * 'role_permission.can_grant_modify'
+	 * 'role_permission.can_grant_delete'
 	 */
 	public function change_permission($role_id, $table_id, $permissions)
 	{
 		//try to update the data
+		//todo: right order of ci commands?
 		$this->db->where('role_id', $role_id);
 		$this->db->where('table_name', $table_name);
 		$this->db->update('role_permission', $permissions); 
