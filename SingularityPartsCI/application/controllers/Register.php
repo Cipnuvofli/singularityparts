@@ -1,17 +1,35 @@
 <?php
-        class Register extends CI_controller{
-                function index()
-                {
-                        $this->load->helper('html');
-                        $this->load->helper('url');
-                        $this->load->helper('form');
-                        $this->load->model('user_model');
+class Register extends CI_controller{
+	
+	public static function has_access()
+	{
+		$CI = get_instance();
+		// this is a weird one. 
+		//the user is only supposed to be able to access iff he/she is not logged in.
+		if(!$CI->session->userdata('person_id') || !$CI->session->userdata('logged_in')) return true;
+		else return false;
+	}
+	
+	public static function is_store_mode()
+	{
+		return FALSE;
+	}
+	
+	public static function get_controller_name()
+	{
+		return 'Register';
+	}
 
-               
-                        $data['page_title'] = "Singularity Parts";
+	function index()
+    {
+        $this->load->helper('html');
+        $this->load->helper('url');
+        $this->load->helper('form');
+        $this->load->model('user_model');
 
-                        $this->load->view('Register', $data);
-            }
+        $data['page_title'] = "Singularity Parts";
+		$this->load->view('Register', $data);
+    }
                
                 public function rp()
                 {
