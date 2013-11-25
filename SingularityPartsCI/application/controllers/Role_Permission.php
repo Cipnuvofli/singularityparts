@@ -90,7 +90,7 @@ class Role_Permission extends CI_Controller {
 		
 		//load view
 		$this->load->library('Grocery_CRUD');
-        $this->grocery_crud->set_table('role');
+        $this->grocery_crud->set_table('role_permission');
         $output = $this->grocery_crud->render();
 		$this->load->view('grocery_crud_view',$output);
     }
