@@ -20,16 +20,36 @@ class Register extends CI_controller{
 		return 'Register';
 	}
 
-	function index()
-    {
-        $this->load->helper('html');
+	private function load_register()
+	{
+		$this->load->helper('html');
         $this->load->helper('url');
         $this->load->helper('form');
         $this->load->model('user_model');
-
+		
+		
+		$data['cars'] = $this->user_model->get_vehicles();
+		$data['states'] = $this->user_model->get_states();
+		$data['branches'] = $this->user_model->get_branches();
         $data['page_title'] = "Singularity Parts";
 		
 		$this->load->view('Register', $data);
+	}
+	
+	function check_select($post_string)
+	{
+		
+		if($post_string == '0')
+		{
+			$this->form_validation->set_message('check_select', 'Need to select something in %s');
+			return false;
+		}
+		else return true;
+	}
+	
+	function index()
+    {
+        $this->load_register();
     }
                
                 public function rp()
@@ -46,17 +66,26 @@ class Register extends CI_controller{
                         $this->form_validation->set_rules('Lname','Lastname','required');
                         $this->form_validation->set_rules('usrEmail','Email','required');
                         $this->form_validation->set_rules('Pw','Password','required');
-                       
+						$this->form_validation->set_rules('city','City','required');
+						$this->form_validation->set_rules('street_no','Street Number','required');
+						$this->form_validation->set_rules('street_name','Street Name','required');
+						$this->form_validation->set_rules('postcode','Postcode','required');
+						$this->form_validation->set_rules('branch', 'Branch', 'required|callback_check_select');
+						$this->form_validation->set_rules('vehicle', 'Vehicle', 'callback_check_select');
+						$this->form_validation->set_rules('state', 'State', 'callback_check_select');
+						$this->form_validation->set_rules('dobm', 'BirthdayMonth', 'callback_check_select');
+						$this->form_validation->set_rules('dobd', 'BirthdayDay', 'callback_check_select');
+						$this->form_validation->set_rules('doby', 'BirthdayYear', 'callback_check_select');
+												
                         if($this->form_validation->run() === FALSE)
                         {
-								
-                                $this->load->view('Register');
+                                $this->load_register();
 								$this->load->view('Failure');
                         }
                         else
                         {
                                 $this->user_model->create_user();
-                                $this->load->view('Register');
+								$this->load_register();
                                 $this->load->view('success');
                        
                         }

@@ -34,13 +34,14 @@ class Front_model extends CI_Model
 		$clear_pass = $this->input->post('Password');
 
 		//query
-		$this->db->select('person_id, hash, email');
+		$this->db->select('person.id AS person_id, password_hash.hash AS hash, person.email AS email');
 		$this->db->from('person');
 		$this->db->join('password_hash', 'person.id = password_hash.person_id');
-		$this->db->where('email', $Email);
-		$this->db->where('start_date <= CURDATE()');
-		$this->db->where('(end_date > CURDATE() OR end_date IS NULL)');
+		$this->db->where('person.email', $Email);
+		$this->db->where('password_hash.start_date <= CURDATE()');
+		$this->db->where('(password_hash.end_date > CURDATE() OR password_hash.end_date IS NULL)');
 		$sql = $this->db->get();
+		echo($this->db->last_query());
 
 		//try to get the result
 		$sql_results = $sql->result();
@@ -48,10 +49,8 @@ class Front_model extends CI_Model
 		//we have nothing; error handling goes here.
 		if(empty($sql_results)) 
 		{
-			show_error('results empty');
-			echo '<p>Login Failure</P>';
-			echo '<a href = "Home.php">Return to home page</a>';
-			$this->load->view("Front");
+			die();
+			//redirect("");
 		}
 		
 		//get the 0th result (yes, this works)
