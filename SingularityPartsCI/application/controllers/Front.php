@@ -1,4 +1,5 @@
 <?php
+	
 	class Front extends CI_controller{
 
 	function loadStuff()
@@ -10,9 +11,13 @@
 		$this->load->model('Front_model');
 		$this->load->library('form_validation');
 		
+		include_once('Dashboard.php');
+		
 		//load views
 		$data['result'] = $this->Front_model->getData();
 		$data['page_title'] = "Singularity Parts";
+		$data['customer_mode'] = Dashboard::is_mode_ok(FALSE);
+		$data['store_mode'] = Dashboard::is_mode_ok(TRUE);
 		$this->load->view('Front_view',$data);
 	}
 	

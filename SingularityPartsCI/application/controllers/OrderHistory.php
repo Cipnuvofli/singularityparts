@@ -1,4 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
 class OrderHistory extends CI_Controller{
 	
 	public static function has_access()
@@ -23,6 +24,7 @@ class OrderHistory extends CI_Controller{
 	
 	function index()
 	{
+		include_once('Dashboard.php');
 		$this->load->helper('form');
 		$this->load->helper('html');
 		$this->load->helper('url');
@@ -32,6 +34,8 @@ class OrderHistory extends CI_Controller{
 		//load the standard models and views
 		$this->load->model('Front_model');
 		$data['page_title'] = "Singularity Parts - Your Order History";
+		$data['customer_mode'] = Dashboard::is_mode_ok(FALSE);
+		$data['store_mode'] = Dashboard::is_mode_ok(TRUE);
 		$this->load->view('Front_view',$data);
 		
 		//now go to the view function

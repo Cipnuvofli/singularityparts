@@ -62,7 +62,9 @@ class WorkHistory extends CI_Controller {
 		
 		//show stuff
 		$data['result'] = $this->Front_model->getData();
-		$data['page_title'] = "Singularity Parts";
+		$data['page_title'] = "Singularity Parts Work History";
+		$data['customer_mode'] = Dashboard::is_mode_ok(FALSE);
+		$data['store_mode'] = Dashboard::is_mode_ok(TRUE);
 		$this->load->view('Front_view',$data);
 		
 		$this->hasFront = true;

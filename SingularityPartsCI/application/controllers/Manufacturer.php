@@ -65,12 +65,14 @@ class Manufacturer extends CI_Controller {
 	function showFront()
 	{
 		if($this->hasFront) return;
-		
+		include_once('Dashboard.php');
 		//load stuff
 		$this->load->model('Front_model');
 		
 		//show stuff
 		$data['result'] = $this->Front_model->getData();
+		$data['customer_mode'] = Dashboard::is_mode_ok(FALSE);
+		$data['store_mode'] = Dashboard::is_mode_ok(TRUE);
 		$data['page_title'] = "Singularity Parts";
 		$this->load->view('Front_view',$data);
 		

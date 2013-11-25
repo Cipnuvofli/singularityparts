@@ -28,6 +28,7 @@ class Register extends CI_controller{
         $this->load->model('user_model');
 
         $data['page_title'] = "Singularity Parts";
+		
 		$this->load->view('Register', $data);
     }
                

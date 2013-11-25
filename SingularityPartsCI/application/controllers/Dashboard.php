@@ -15,7 +15,6 @@
  */
 class Dashboard extends CI_Controller {
 	private $hasFront = false;
-	private $controller_arr = array();
 	
 	function loadStuff()
 	{
@@ -25,13 +24,21 @@ class Dashboard extends CI_Controller {
 		$this->load->library('ControllerList');
 	}
 	
-	private function get_dash_data($should_be_store_mode)
+	public static function is_mode_ok($is_store_mode)
 	{
-		$this->loadStuff();
-		$this->showFront();
+		$controller_arr = self::get_dash_data($is_store_mode);
+		if(empty($controller_arr)) return false;
+		else return true;
+	}
+	
+	private static function get_dash_data($should_be_store_mode)
+	{
+		$CI = get_instance();
+		$CI->load->library('ControllerList');
 		
 		//get all controllers
-		$controllers = $this->controllerlist->getControllers();
+		$controllers = $CI->controllerlist->getControllers();
+		$controller_arr = array();
 		
 		//do any have the methods we need
 		foreach($controllers as $controller_name=>$controller)
@@ -60,26 +67,33 @@ class Dashboard extends CI_Controller {
 						'print_name' => $printable_name, 
 						'link_name'=>$controller_name
 					);
-					$this->controller_arr[] = $controller_value;
+					$controller_arr[] = $controller_value;
 				}
 			}
 		}
+		return $controller_arr;
 	}
 	
 	function customer_mode()
 	{
-		$this->get_dash_data(FALSE);
-		$data['customer_controller_arr'] = $this->controller_arr;
-		if(empty($this->controller_arr)) redirect('');
+		$this->loadStuff();
+		$this->showFront();
+		
+		$controller_arr = self::get_dash_data(FALSE);
+		$data['customer_controller_arr'] = $controller_arr;
+		if(empty($controller_arr)) redirect('');
 		else $this->load->view('Dashboard_view', $data);
 		
 	}
 	
 	function store_mode()
 	{
-		$this->get_dash_data(TRUE);
-		$data['store_controller_arr'] = $this->controller_arr;
-		if(empty($this->controller_arr)) redirect('');
+		$this->loadStuff();
+		$this->showFront();
+		
+		$controller_arr = self::get_dash_data(TRUE);
+		$data['store_controller_arr'] = $controller_arr;
+		if(empty($controller_arr)) redirect('');
 		else $this->load->view('Dashboard_view', $data);
 	}
 	
@@ -93,8 +107,9 @@ class Dashboard extends CI_Controller {
 		//show stuff
 		$data['result'] = $this->Front_model->getData();
 		$data['page_title'] = "Singularity Parts";
+		$data['customer_mode'] = Dashboard::is_mode_ok(FALSE);
+		$data['store_mode'] = Dashboard::is_mode_ok(TRUE);
 		$this->load->view('Front_view',$data);
-		
 		$this->hasFront = true;
 	}
 	

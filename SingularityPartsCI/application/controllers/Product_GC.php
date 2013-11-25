@@ -58,6 +58,7 @@ class Product_GC extends CI_Controller {
 	
 	function showFront()
 	{
+		include_once('Dashboard.php');
 		if($this->hasFront) return;
 		
 		//load stuff
@@ -65,6 +66,8 @@ class Product_GC extends CI_Controller {
 		
 		//show stuff
 		$data['result'] = $this->Front_model->getData();
+		$data['customer_mode'] = Dashboard::is_mode_ok(FALSE);
+		$data['store_mode'] = Dashboard::is_mode_ok(TRUE);
 		$data['page_title'] = "Singularity Parts";
 		$this->load->view('Front_view',$data);
 		

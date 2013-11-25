@@ -3,15 +3,22 @@
 if($this->session->userdata('logged_in'))
 {
         echo '<div id = "loginwindow">';
-		//echo '<h1>First and Last Name</h1>';
-		echo '<p id = "info">'. anchor('Account Information', 'Account Information', 'title="Account Information"').'</p>';
-		echo '<p id = "Orders">'. anchor('Orders', 'Orders', 'title="Orders"') .'</p>';
-		//echo '<p id =  "Addproduct">'. anchor('Products', 'Products', 'title="Products"').'</p>';
-		//echo '<p id = "Employees"> '. anchor('Employees', 'Employees', 'title="Employees"').'</p>';
 		
 		echo '<p id = "Login">';
 		echo anchor('Front/logout', 'Log out', '');
 		echo '</p>';
+		
+		if(isset($customer_mode) && $customer_mode) {
+			echo '<p id="customer_dashboard">';
+			echo anchor('Dashboard/customer_mode', 'Customer Dashboard', '');
+			echo '</p>';
+		}
+		if(isset($store_mode) && $store_mode) 
+		{
+			echo '<p id="customer_dashboard">';
+			echo anchor('Dashboard/store_mode', 'Store Dashboard', '');
+			echo '</p>';
+		}
         echo '</div>';
 }
 
@@ -29,5 +36,6 @@ echo '</div>';
 echo '</div>';
 
 }
+
 
 ?>

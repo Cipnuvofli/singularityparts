@@ -3,6 +3,7 @@ class Cart extends CI_Controller{
 
 	function index()
 	{
+		include_once('Dashboard.php');
 		$this->load->helper('form');
 		$this->load->helper('html');
 		$this->load->helper('url');
@@ -16,6 +17,8 @@ class Cart extends CI_Controller{
 		
 		//load the standard models and views
 		$this->load->model('Front_model');
+		$data['customer_mode'] = Dashboard::is_mode_ok(FALSE);
+		$data['store_mode'] = Dashboard::is_mode_ok(TRUE);
 		$data['page_title'] = "Singularity Parts - Your Order History";
 		$this->load->view('Front_view',$data);
 		
