@@ -45,8 +45,6 @@ class Front_model extends CI_Model
 		//try to get the result
 		$sql_results = $sql->result();
 		
-
-			
 		//we have nothing; error handling goes here.
 		if(empty($sql_results)) 
 		{
@@ -67,8 +65,6 @@ class Front_model extends CI_Model
 			//and whether or not he/she is logged in.
 			$newdata = array(
                    'person_id'  => $sqlr->person_id,
-				   'first_name' => $sqlr->first_name,
-				   'last_name' => $sqlr->last_name,
                    'logged_in' => TRUE
                );
 			$this->session->set_userdata($newdata);
@@ -91,8 +87,6 @@ class Front_model extends CI_Model
 		//redirect to home page
 		redirect("");
 	}
-
-	
 
 
 

@@ -8,12 +8,11 @@
 					$ctrl_link_name=$controller['link_name'];
 					$ctrl_print_name=$controller['print_name'];
 				?>
-				<li><?php echo("<a href=\"$ctrl_link_name\">$ctrl_print_name</a>"); ?></li>
+				<li><?php echo anchor($ctrl_link_name, $ctrl_print_name, ''); ?></li>
 			<?php endforeach; ?>
 		</ul>
 	</div>
 <?php endif; ?>
-
 
 <!-- store mode -->
 <?php if(isset($store_controller_arr)): ?>
@@ -24,7 +23,7 @@
 					$ctrl_link_name=$controller['link_name'];
 					$ctrl_print_name=$controller['print_name'];
 				?>
-				<li><?php echo("<a href=\"$ctrl_link_name\">$ctrl_print_name</a>"); ?></li>
+				<li><?php echo anchor($ctrl_link_name, $ctrl_print_name, ''); ?></li>
 			<?php endforeach; ?>
 		</ul>
 	</div>
