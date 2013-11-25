@@ -34,8 +34,9 @@
 		
 		public function GenerateProductStubs()
 		{
-				$this->db->select('*');
-			$this->db->from('product');
+			$this->db->select('*');
+			$this->db->from('product, product_price');
+			$this->db->where('`product`.`id` = `product_price`.`product_id`');
 			$products = $this->db->get();
 			$result = $products->result();
 			echo '</br>';
@@ -48,7 +49,32 @@
 					echo '<p = "description">Description: '.$row->description.'</p>';
 					echo '<p = "dimensions">Dimensions:'.$row->length_meters.'x'.$row->width_meters.'x'.$row->height_meters.' meters</p>';
 					echo '<p = "weight">Weight: '.$row->weight_kilograms.' Kilograms</p>';
-					echo '<a href = "Cart/add/'.$row->id.'">Add to Cart</a>';
+					echo '<p = "price">Price: '.$row->price.' USD </p>';
+					echo '<a href = "Cart/add/'.$row->id.'/1/'.$row->price.'/'.$row->name.'">Add to Cart</a>';
+					echo '<hr/>';
+				}
+			}
+		
+		}
+		public function GenerateProductStubsCategory($category)
+		{
+			$this->db->select('*');
+			$this->db->from('product, product_price');
+			$this->db->where('`product`.`id` = `product_price`.`product_id` and `product`.`category` = `$category`');
+			$products = $this->db->get();
+			$result = $products->result();
+			echo '</br>';
+			if ($products->num_rows() > 0)
+			{
+				foreach($result as $row)
+				{
+					echo '<hr/>';
+					echo '<p = "name">Name: '.$row->name.'</p>';
+					echo '<p = "description">Description: '.$row->description.'</p>';
+					echo '<p = "dimensions">Dimensions:'.$row->length_meters.'x'.$row->width_meters.'x'.$row->height_meters.' meters</p>';
+					echo '<p = "weight">Weight: '.$row->weight_kilograms.' Kilograms</p>';
+					echo '<p = "price">Price: '.$row->price.' USD </p>';
+					echo '<a href = "Cart/add/'.$row->id.'/1/'.$row->price.'/'.$row->name.'">Add to Cart</a>';
 					echo '<hr/>';
 				}
 			}

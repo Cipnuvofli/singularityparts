@@ -7,6 +7,7 @@ class Cart extends CI_Controller{
                 $this->load->helper('form');
                 $this->load->helper('html');
                 $this->load->helper('url');
+				$this->load->model('Cart_Model');
                
                 //check if login ok
                 if(!$this->session->userdata('logged_in') || !$this->session->userdata('person_id'))
@@ -27,19 +28,49 @@ class Cart extends CI_Controller{
                 $this->Cart_model->get_product_for_vehicle_and_query(123, 'hello');
                 echo('<br/><br/>');
                 $this->Cart_model->get_product_for_vehicle_and_query(array(123, 234), 'hello');
+				$this->load->view('cart_viewer');
         }
-		function add($productid)
+		function add($id, $quantity, $price, $name)
 		{
-			if(!isset($this->session->userdata($ordereditems)))
-			{
-				$ordereditems = array(''=>$productid);
-				$this->session->set_userdata($newdata);
-			}
-			else
-			{
-				array_push($ordereditems, $productid);
-			}
+			$data = array(
+			'id' => $id,
+			'qty' =>1,
+			'price' => $price,
+			'name' => $name
+			);
+			$this->cart->insert($data);
+			redirect('cart');
 		}
+		function update()
+		{
+			$data = array(
+               //'rowid' => array(),
+               //'qty'   => array()
+            );
+			$this->cart->update($data); 
+			redirect('cart');
+		}
+			public static function has_access()
+			{
+				$CI = get_instance();
+				
+				//check if login ok
+				if(!$CI->session->userdata('logged_in') 
+					|| !$CI->session->userdata('person_id')) return false;
+				else return true;
+			}
+			
+			public static function is_store_mode()
+			{
+				return FALSE;
+			}
+			
+			public static function get_controller_name()
+			{
+				return 'Shopping Cart';
+			}
+	
+
        
 }
 ?>

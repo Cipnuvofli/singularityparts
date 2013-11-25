@@ -20,6 +20,7 @@
 		$data['customer_mode'] = Dashboard::is_mode_ok(FALSE);
 		$data['store_mode'] = Dashboard::is_mode_ok(TRUE);
 		$this->load->view('Front_view',$data);
+		$this->load->view('content');
 		
 		
 	}

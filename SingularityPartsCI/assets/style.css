@@ -1,4 +1,23 @@
+#QTY
+{
+position:absolute;
+left:1em;
 
+}
+#IDesc
+{
+position:absolute;
+left: 27em;
+margin-right:50em;
+
+}
+
+#stot
+{
+position:absolute;
+right:1em;
+
+}
 #Header
 {
 text-shadow:1px 1px 7px rgba(255,255,0,1);

@@ -3,7 +3,6 @@
 if($this->session->userdata('logged_in'))
 {
         echo '<div id = "loginwindow">';
-		
 		echo '<p id = "Login">';
 		echo anchor('Front/logout', 'Log out', '');
 		echo '</p>';
