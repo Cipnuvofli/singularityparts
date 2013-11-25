@@ -89,7 +89,8 @@ class productPrice extends CI_Controller {
 		$this->load->library('Grocery_CRUD');
         $this->grocery_crud->set_table('product_price');
         $output = $this->grocery_crud->render();
-		
+		$this->load->view('grocery_crud_view',$output);
+
     }
 }
  
