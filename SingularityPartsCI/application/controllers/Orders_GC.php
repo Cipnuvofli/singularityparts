@@ -89,6 +89,7 @@ class Orders_GC extends CI_Controller {
 		$this->load->library('Grocery_CRUD');
         $this->grocery_crud->set_table('order');
         $output = $this->grocery_crud->render();
+		$this->load->view('grocery_crud_view',$output);
 		
     }
 }
