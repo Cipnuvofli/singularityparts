@@ -19,7 +19,7 @@ class OrderHistory extends CI_Controller{
 	
 	public static function get_controller_name()
 	{
-		return 'View Your Order History';
+		return 'Order History';
 	}
 	
 	function index()

@@ -10,6 +10,7 @@
 		$this->load->helper('url');
 		$this->load->model('Front_model');
 		$this->load->library('form_validation');
+		$this->load->model('Cart_model');
 		
 		include_once('Dashboard.php');
 		
@@ -19,8 +20,9 @@
 		$data['customer_mode'] = Dashboard::is_mode_ok(FALSE);
 		$data['store_mode'] = Dashboard::is_mode_ok(TRUE);
 		$this->load->view('Front_view',$data);
+		
+		
 	}
-	
 	function index()
 	{
 		$this->loadStuff();

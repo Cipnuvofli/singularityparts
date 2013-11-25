@@ -31,6 +31,30 @@
 		/**
 		 * Returns the base query for obtaining a product list.
 		 */
+		
+		public function GenerateProductStubs()
+		{
+				$this->db->select('*');
+			$this->db->from('product');
+			$products = $this->db->get();
+			$result = $products->result();
+			echo '</br>';
+			if ($products->num_rows() > 0)
+			{
+				foreach($result as $row)
+				{
+					echo '<hr/>';
+					echo '<p = "name">Name: '.$row->name.'</p>';
+					echo '<p = "description">Description: '.$row->description.'</p>';
+					echo '<p = "dimensions">Dimensions:'.$row->length_meters.'x'.$row->width_meters.'x'.$row->height_meters.' meters</p>';
+					echo '<p = "weight">Weight: '.$row->weight_kilograms.' Kilograms</p>';
+					echo '<a href = "Cart/add/'.$row->id.'">Add to Cart</a>';
+					echo '<hr/>';
+				}
+			}
+		
+		}
+		 
 		public function get_base_product_query()
 		{
 			return 
