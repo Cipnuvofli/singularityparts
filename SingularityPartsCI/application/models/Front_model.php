@@ -45,6 +45,8 @@ class Front_model extends CI_Model
 		//try to get the result
 		$sql_results = $sql->result();
 		
+
+			
 		//we have nothing; error handling goes here.
 		if(empty($sql_results)) 
 		{
@@ -89,6 +91,8 @@ class Front_model extends CI_Model
 		//redirect to home page
 		redirect("");
 	}
+
+	
 
 
 

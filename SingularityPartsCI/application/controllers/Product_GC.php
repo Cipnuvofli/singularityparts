@@ -71,6 +71,7 @@ class Product_GC extends CI_Controller {
 		$this->hasFront = true;
 	}
 	
+	
     function index()
     {
 		$this->load->library('Grocery_CRUD');
