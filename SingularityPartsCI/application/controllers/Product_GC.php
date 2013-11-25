@@ -24,10 +24,12 @@ class Product_GC extends CI_Controller {
 	public static function has_access()
 	{
 		$CI = get_instance();
+		if(!$CI->session->userdata('person_id') || 
+			!$CI->session->userdata('logged_in')) return false;
 		$CI->load->model('RBAC_model');
 		if(!$CI->RBAC_model->has_permission(
 				$CI->session->userdata('person_id'), 
-				'role',
+				'product',
 				array(	
 					'role_permission.can_read' => TRUE, 
 					'role_permission.can_add'=>TRUE,
@@ -79,9 +81,6 @@ class Product_GC extends CI_Controller {
 		$this->load->library('Grocery_CRUD');
 		$this->load->model('RBAC_model');
 		$this->showFront();
-		
-		//are we logged in?
-		if(!$this->session->userdata('person_id') || !$this->session->userdata('logged_in')) redirect('');
 
 		//do we have access?
 		if(!self::has_access()) redirect('');
