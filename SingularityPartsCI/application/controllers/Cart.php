@@ -50,6 +50,41 @@ class Cart extends CI_Controller{
 			$this->cart->update($data); 
 			redirect('cart');
 		}
+		function checkout()
+		{
+			    
+                        $this->load->helper('form');
+                        $this->load->library('form_validation');
+                        $this->load->helper('url');
+                        $this->load->helper('html');
+                        $this->load->model('user_model');
+						$this->load->model('cart_model');
+                       
+                        $data['title']="Checkout";
+                       
+                        $this->form_validation->set_rules('CC','Credit Card Number','required');
+                        $this->form_validation->set_rules('Code','Security Code','required');
+                        $this->form_validation->set_rules('Address','Address','required');
+						$this->form_validation->set_rules('City','City','required');
+						$this->form_validation->set_rules('state','State','required');
+						$this->form_validation->set_rules('Zipcode','Zipcode','required');
+						$this->form_validation->set_rules('Country','Country','required');
+						$this->form_validation->set_rules('Phone','Phone', 'required');
+												
+                        if($this->form_validation->run() === FALSE)
+                        {
+								$this->load->view('Failure');
+                        }
+                        else
+                        {
+                                $this->Cart_model->checkoutdb();
+                                $this->load->view('success');
+                       
+                        }
+						//Purge Shopping cart
+						redirect('Front');
+
+		}
 			public static function has_access()
 			{
 				$CI = get_instance();

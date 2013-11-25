@@ -1,7 +1,6 @@
 <?php
 
 //This view is based on the tutorial in the Codeigniter documentation at http://ellislab.com/codeigniter%20/user-guide/libraries/cart.html
-
  echo form_open('Cart/update'); ?>
 
 <table cellpadding="6" cellspacing="1" style="width:100%" border="0">
@@ -54,3 +53,5 @@
 </table>
 
 <p><?php echo form_submit('', 'Update your Cart'); ?></p>
+<br/><br/>
+<p><?php echo anchor('FI', 'Checkout'); ?></p>

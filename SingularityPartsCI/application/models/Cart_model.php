@@ -56,6 +56,29 @@
 			}
 		
 		}
+		function checkoutdb()
+		{
+				$data['Code'] =  $this->input->post('Code');
+				$data['Address'] = $this->input->post('Address');
+				$data['City'] =  $this->input->post('City');
+				$data['State'] =  $this->input->post('State');
+				$data['Zipcode'] = $this->input->post('Zipcode');
+				$data['Country'] =  $this->input->post('Country');
+				$data['Phone'] =  $this->input->post('Phone');
+				$data['AmountDue'] = $this->cart->total();
+				$data['person_id'] = $this->session->userdata('person_id');
+				$clear_cc = $this->input->post('CC');
+				$data['hashed_cc'] = password_hash($clear_cc, PASSWORD_DEFAULT);
+				$this->db->insert('order', $data);
+				
+				
+		
+			
+				
+				
+		
+		
+		}
 		public function GenerateProductStubsCategory($category)
 		{
 			$this->db->select('*');
