@@ -22,7 +22,7 @@
 	  <td>
 		<?php echo form_dropdown(
 			$items['rowid'],
-			range(0,$items['options']['max_qty']), 
+			range(0,$max_qty[$items['rowid']]), 
 			$items['qty']
 		)
 		?>

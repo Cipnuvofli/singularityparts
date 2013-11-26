@@ -613,6 +613,10 @@
        
        //data exists
        else {
+		 $this->db->where('temporary_order_id', $order_id);
+         $this->db->where('product_id', $product_id);
+	     $this->db->where('product_condition_id', $condition_id);
+		 $this->db->where('country_id', $country_id);
          $this->db->update('temporary_order_product', $record);
        }
        
