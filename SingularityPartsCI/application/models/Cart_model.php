@@ -1,110 +1,140 @@
 <?php 
-	/*
-		 * TODO: 
-		 * 0. The actual user interface and the controller. 
-		 * 
-		 * 2. Turning a shopping cart order into an order in the order and order_product tables,
-			and deleting the corresponding shopping cart order. (transaction)
-		 * 3. Adding payment
-		 *
-		 * WHAT NEEDS TESTING:
-		 * 1. retrieving products given vehicle(s), a query string, both, or neither
-		 * 4. retrieving facets for a product (name and value)
-		 * 5. updating the temporary_order and temporary_order_product tables as the shopping cart changes. 
-			These tables are used to help reduce the chance of a product being "sold out" 
-			before the user gets to it. Note that unless the user remains pretty active on the site,
-			the quantities will not be real-time (so the UI should have a "quantities current as of DATETIME" disclaimer).
-		 * 
-		 * NOTES:
-		 * The query string functions are vulnerable to SQL injection 
-		 * if the query string contains anything other than A-Za-z0-9 and spaces. 
-		 * 
-		 * I am not sure if the correct join is being used for the product retrieval functions involving vehicles. 
-		 * Basically, products without vehicles (i.e. have no entries in the product_vehicle table) should be retrieved
-		 * as well as products that match any of the vehicle(s) given.
-		 * 
-		 * These queries have not been tested other than a brief 
-		 * "echo with sample values filled in and copy to Workbench for basic syntax checking"
-		 */
+	
 	class Cart_model extends CI_Model
 	{
 		/**
-		 * Returns the base query for obtaining a product list.
+		 * Finishes loading information into a product result
 		 */
-		
-		public function GenerateProductStubs()
+		public function GenerateProductStubsForResult($products)
 		{
-			$this->db->select('*');
-			$this->db->from('product, product_price');
-			$this->db->where('`product`.`id` = `product_price`.`product_id`');
-			$products = $this->db->get();
-			$result = $products->result();
-			echo '</br>';
-			if ($products->num_rows() > 0)
+			foreach($products as $row)
 			{
-				foreach($result as $row)
+				//whether or not we have started to print out the specs paragraph
+				$has_printed_spec_p = false;
+				
+				echo '<hr/>';
+					
+				/*
+				 * print standard attributes 
+				 * (name, description, dimensions, weight)
+				 */
+				echo '<p name= "name">';
+				echo 'Name: '.$row->product_name.'</p>';
+				echo '<p name= "description">Description: ';
+				echo $row->product_description.'</p>';
+				echo '<p name= "dimensions">Dimensions: ';
+				echo $row->length_meters.'x'.
+					$row->width_meters.'x'.
+					$row->height_meters.' meters</p>';
+				echo '<p name= "weight">Weight: '.
+					$row->weight_kilograms.' Kilograms</p>';
+				echo '<p name= "manufacturer">Manufacturer: ';
+					echo $row->manufacturer_name.'</p>';
+				
+				//print boolean facets
+				$bool_facets = $this->get_bool_values_for_product($row->product_id);
+				//we have some
+				if(!empty($bool_facets))
 				{
-					echo '<hr/>';
-					echo '<p = "name">Name: '.$row->name.'</p>';
-					echo '<p = "description">Description: '.$row->description.'</p>';
-					echo '<p = "dimensions">Dimensions:'.$row->length_meters.'x'.$row->width_meters.'x'.$row->height_meters.' meters</p>';
-					echo '<p = "weight">Weight: '.$row->weight_kilograms.' Kilograms</p>';
-					echo '<p = "price">Price: '.$row->price.' USD </p>';
-					echo '<a href = "Cart/add/'.$row->id.'/1/'.$row->price.'/'.$row->name.'">Add to Cart</a>';
-					echo '<hr/>';
+					//print out opening stuff if required
+					if(!$has_printed_spec_p)
+					{
+						echo '<p name="Specs"> Additional Specs:';
+						echo '<ul name="Specs">';
+						$has_printed_spec_p = true;
+					}
+					foreach($bool_facets as $facet)
+					{
+						if($facet->facet_value)
+							echo '<li>'.$facet->facet_name .': Yes </li>';
+						else
+							echo '<li>'.$facet->facet_name .': No </li>';
+					}
 				}
-			}
-		
-		}
-		function checkoutdb()
-		{
-				$data['Code'] =  $this->input->post('Code');
-				$data['Address'] = $this->input->post('Address');
-				$data['City'] =  $this->input->post('City');
-				$data['State'] =  $this->input->post('State');
-				$data['Zipcode'] = $this->input->post('Zipcode');
-				$data['Country'] =  $this->input->post('Country');
-				$data['Phone'] =  $this->input->post('Phone');
-				$data['AmountDue'] = $this->cart->total();
-				$data['person_id'] = $this->session->userdata('person_id');
-				$clear_cc = $this->input->post('CC');
-				$data['hashed_cc'] = password_hash($clear_cc, PASSWORD_DEFAULT);
-				$this->db->insert('order', $data);
 				
-				
-		
-			
-				
-				
-		
-		
-		}
-		public function GenerateProductStubsCategory($category)
-		{
-			$this->db->select('*');
-			$this->db->from('product, product_price');
-			$this->db->where('`product`.`id` = `product_price`.`product_id` and `product`.`category` = `$category`');
-			$products = $this->db->get();
-			$result = $products->result();
-			echo '</br>';
-			if ($products->num_rows() > 0)
-			{
-				foreach($result as $row)
+				//print integer specs
+				$int_facets = $this->get_int_values_for_product($row->product_id);
+				//we have some
+				if(!empty($int_facets))
 				{
-					echo '<hr/>';
-					echo '<p = "name">Name: '.$row->name.'</p>';
-					echo '<p = "description">Description: '.$row->description.'</p>';
-					echo '<p = "dimensions">Dimensions:'.$row->length_meters.'x'.$row->width_meters.'x'.$row->height_meters.' meters</p>';
-					echo '<p = "weight">Weight: '.$row->weight_kilograms.' Kilograms</p>';
-					echo '<p = "price">Price: '.$row->price.' USD </p>';
-					echo '<a href = "Cart/add/'.$row->id.'/1/'.$row->price.'/'.$row->name.'">Add to Cart</a>';
-					echo '<hr/>';
+					//print out opening stuff if required
+					if(!$has_printed_spec_p)
+					{
+						echo '<p name="Specs"> Additional Specs:';
+						echo '<ul name="Specs">';
+						$has_printed_spec_p = true;
+					}
+					foreach($int_facets as $facet)
+					{
+						echo '<li>'.$facet->facet_name .': '.$facet->facet_value .'</li>';
+					}
 				}
-			}
-		
+				
+				//print float specs
+				$float_facets = $this->get_float_values_for_product($row->product_id);
+				//we have some
+				if(!empty($float_facets))
+				{
+					//print out opening stuff if required
+					if(!$has_printed_spec_p)
+					{
+						echo '<p name="Specs"> Additional Specs:';
+						echo '<ul name="Specs">';
+						$has_printed_spec_p = true;
+					}
+					foreach($float_facets as $facet)
+					{
+						echo '<li>'.$facet->facet_name .': '.$facet->facet_value .'</li>';
+					}	
+				}
+				
+				//print string specs
+				$string_facets = $this->get_string_values_for_product($row->product_id);
+				if(!empty($string_facets))
+				{
+					//print out opening stuff if required
+					if(!$has_printed_spec_p)
+					{
+						echo '<p name="Specs"> Additional Specs:';
+						echo '<ul name="Specs">';
+						$has_printed_spec_p = true;
+					}
+					foreach($string_facets as $facet)
+					{
+						echo '<li>'.$facet->facet_name .': '.$facet->facet_value .'</li>';
+					}
+				}
+				//print closing tags
+				if($has_printed_spec_p)
+				{
+					echo '</ul></p>';
+				}
+				
+				//print price, country, condition, available qty
+				echo '<p name= "price">Price: '.$row->product_price.' USD </p>';
+				echo '<p name= "CountryofOrigin">Country of Origin: '.$row->country_name .'</p>';
+				echo '<p name= "Condition"> Condition: '.$row->condition_name .'</p>';
+				echo '<p name= "Quantity"> Quantity Available as of '; 
+				echo date('Y-m-d H:i:s') . ' ' . date('T') . ': ';
+				echo $row->quantity_available.'</p>';
+				
+				//offer to add to cart
+				echo '<p>';
+				echo anchor(
+					'Cart/add/'.$row->product_id. '/' 
+					.$row->condition_id . '/' . $row->country_id, 
+					'Add to Cart', 
+					'title="Your Cart"');
+				echo '</p>';
+				echo '<hr/>';
+			}	
 		}
 		 
-		public function get_base_product_query()
+		/**
+		 * Returns the base product query STRING. 
+		 * DOES NOT perform query. 
+		 */
+		private function get_base_product_query()
 		{
 			return 
 				'SELECT `product`.`id` AS `product_id`, 
@@ -139,85 +169,276 @@
 						)
 					JOIN `country` ON (`country`.`id` = `product_price`.`country_id`)
 					JOIN `product_condition` ON (`product_condition`.`id` = `product_price`.`condition_id`)
+					LEFT OUTER JOIN `product_vehicle` ON (`product`.`id` = `product_vehicle`.`product_id`)
 			';
 		}
 		
-		/**
-		 * Gets all product IDs matching a vehicle and a query string
-		 * To reduce chances of SQL injection, 
-		 * the query string should only consist of alphanumerics and spaces.
-		 * (the last thing in the brackets was a space)
-		 */
-		public function get_product_for_vehicle_and_query($vehicle_id, $query)
+		function is_unsigned_int($id)
 		{
-			if(is_array($vehicle_id)) {
-				$vehicle_id_list = '(' . implode(', ', $vehicle_id) . ')';
-			}
-			else
+			return (is_int($id) && intval($id) >= 0);
+		}
+		
+		/**
+		 * This is the main product retrieval function. 
+		 * This actually performs the query.
+		 * $args is an array with any of the following:
+		 * 'category_id' - either one category_id or an array of category_id
+		 * 'vehicle_id' - either one vehicle_id or an array of vehicle_id
+		 * 'search_string' - a string that the user types in a search box
+		 * 'product_id' 
+		 * 'condition_id'
+		 * 'country_id' 
+		 *
+		 * The values returned can be found in get_base_product_query(), 
+		 * but as of now they are:
+		 * product_id (internal use only)
+		 * manufacturer_name
+		 * product_name
+		 * product_description
+		 * category_name
+		 * category_id (internal use only)
+		 * length_meters
+		 * width_meters 
+		 * height_meters
+		 * weight_kilograms
+		 * barcode
+		 * product_price
+		 * condition_name
+		 * condition_id (internal use only)
+		 * country_id (internal use only)
+		 * country_name
+		 * quantity_available
+		 */
+		function get_products($args)
+		{
+			//get the main query
+			$has_where = false;
+			$base_query = $this->get_base_product_query();
+			$data_arr = array();
+			
+			//we have a vehicle; let's try to add it.
+			if(isset($args['vehicle_id']))
 			{
-				$vehicle_id_list = '(' . $vehicle_id . ')';
+				//get the vehicle(s)
+				$vehicle_id = $args['vehicle_id'];
+				
+				//get array of vehicles
+				if(!is_array($vehicle_id)) 
+				{
+					$vehicle_id_list = array($vehicle_id);
+				}
+				else $vehicle_id_list = $vehicle_id;
+			
+				//check that vehicle ids are sane
+				if(array_filter($vehicle_id_list, array($this, 'is_unsigned_int')))
+				{
+					//make the id string
+					$vehicle_id_str = '('.implode(',', $vehicle_id_list).')';
+					
+					//append to the query string
+					if(!$has_where)
+					{
+						$base_query = $base_query . 'WHERE(';
+						$has_where = TRUE;
+					}
+					//otherwise, assume there exists a where string and add an 'and'
+					else
+					{
+						$base_query = $base_query . 'AND';
+					}
+					
+					//append conditions to the query string
+					$base_query = $base_query . 
+						"(`product_vehicle`.`vehicle_id` IN $vehicle_id_str OR `product_vehicle`.`vehicle_id` IS NULL)";
+				}
 			}
-			$base_query = $this->get_base_product_query();
-			$base_query = $base_query . 
-			"LEFT OUTER JOIN `product_vehicle`
-				ON (`product_vehicle`.`product_id` = `product`.`id`)
-			WHERE (
-				`product_vehicle`.`vehicle_id` IN $vehicle_id_list
-					OR `product_vehicle`.`vehicle_id` IS NULL)
-				AND (`product`.`name` LIKE '%$query%' OR `product`.`description` LIKE '%$query%')
-			";
-			$sql_result = $this->db->query($base_query);
-			return $sql_result->result();
-		}
-		
-		/**
-		 * Gets products for vehicles. 
-		 */
-		public function get_product_for_vehicle($vehicle_id)
-		{
-			if(is_array($vehicle_id)) {
-				$vehicle_id_list = '(' . implode(', ', $vehicle_id) . ')';
-			}
-			else
+			
+			//we have a search string
+			if(isset($args['search_string']))
 			{
-				$vehicle_id_list = '(' . $vehicle_id . ')';
+				$search_string = $args['search_string'];
+					
+				//formulate query arguments
+				$like_str = '%'.$search_string.'%';
+				$data_arr[] = $like_str;
+				$data_arr[] = $like_str;
+			
+				//append to the query string
+				if(!$has_where)
+				{
+					$base_query = $base_query . 'WHERE(';
+					$has_where = TRUE;
+				}
+				//otherwise, assume there exists a where string and add an 'and'
+				else
+				{
+					$base_query = $base_query . 'AND';
+				}
+				
+				//continue formulating query string
+				$base_query = $base_query . '(`product`.`name` LIKE ? OR `product`.`description` LIKE ?';
+				
+				//we have a part number; add to query
+				if($this->is_unsigned_int($search_string))
+				{
+					$data_arr[] = intval($search_string);
+					$base_query = $base_query . 'OR `product`.`id` = ?)';
+				}
+				//otherwise just add the closing )
+				else $base_query = $base_query . ')';
 			}
-			$base_query = $this->get_base_product_query();
-			$base_query = $base_query . 
-			"LEFT OUTER JOIN `product_vehicle`
-				ON (`product_vehicle`.`product_id` = `product`.`id`)
-			WHERE (`product_vehicle`.`vehicle_id` IN $vehicle_id_list
-				OR `product_vehicle`.`vehicle_id` IS NULL);
-			";
-			$sql_result = $this->db->query($base_query);
-			return $sql_result->result();
-		}
+			
+			//we have a category; let's try to add it.
+			if(isset($args['category_id']))
+			{
+				//get the category(ies)
+				$category_id = $args['category_id'];
+				
+				//get array of categories
+				if(!is_array($category_id)) 
+				{
+					$category_id_list = array($category_id);
+				}
+				else $category_id_list = $category_id;
+			
+				//check that category ids are sane
+				if(array_filter($category_id_list, array($this, 'is_unsigned_int')))
+				{
+					//make the id string
+					$category_id_str = '('.implode(',', $category_id_list).')';
+					
+					//append to the query string
+					if(!$has_where)
+					{
+						$base_query = $base_query . 'WHERE(';
+						$has_where = TRUE;
+					}
+					//otherwise, assume there exists a where string and add an 'and'
+					else
+					{
+						$base_query = $base_query . 'AND';
+					}
+					
+					//append conditions to the query string
+					$base_query = $base_query . 
+						"(`product`.`category_id` IN $category_id_str)";
+				}
+			}
+			
+			//we have a country; let's try to add it.
+			if(isset($args['country_id']))
+			{
+				//get the country(s)
+				$country_id = $args['country_id'];
+				
+				//get array of countrys
+				if(!is_array($country_id)) 
+				{
+					$country_id_list = array($country_id);
+				}
+				else $country_id_list = $country_id;
+			
+				//check that country ids are sane
+				if(array_filter($country_id_list, array($this, 'is_unsigned_int')))
+				{
+					//make the id string
+					$country_id_str = '('.implode(',', $country_id_list).')';
+					
+					//append to the query string
+					if(!$has_where)
+					{
+						$base_query = $base_query . 'WHERE(';
+						$has_where = TRUE;
+					}
+					//otherwise, assume there exists a where string and add an 'and'
+					else
+					{
+						$base_query = $base_query . 'AND';
+					}
+					
+					//append conditions to the query string
+					$base_query = $base_query . 
+						"(`product_price`.`country_id` IN $country_id_str)";
+				}
+			}
+			
+			//we have a condition; let's try to add it.
+			if(isset($args['condition_id']))
+			{
+				//get the condition(s)
+				$condition_id = $args['condition_id'];
+				
+				//get array of conditions
+				if(!is_array($condition_id)) 
+				{
+					$condition_id_list = array($condition_id);
+				}
+				else $condition_id_list = $condition_id;
+			
+				//check that condition ids are sane
+				if(array_filter($condition_id_list, array($this, 'is_unsigned_int')))
+				{
+					//make the id string
+					$condition_id_str = '('.implode(',', $condition_id_list).')';
+					
+					//append to the query string
+					if(!$has_where)
+					{
+						$base_query = $base_query . 'WHERE(';
+						$has_where = TRUE;
+					}
+					//otherwise, assume there exists a where string and add an 'and'
+					else
+					{
+						$base_query = $base_query . 'AND';
+					}
+					
+					//append conditions to the query string
+					$base_query = $base_query . 
+						"(`product_price`.`condition_id` IN $condition_id_str)";
+				}
+			}
+			
+			//we have a product; let's try to add it.
+			if(isset($args['product_id']))
+			{
+				//get the product(s)
+				$product_id = $args['product_id'];
+				
+				//get array of products
+				if(!is_array($product_id)) 
+				{
+					$product_id_list = array($product_id);
+				}
+				else $product_id_list = $product_id;
+			
+				//check that product ids are sane
+				if(array_filter($product_id_list, array($this, 'is_unsigned_int')))
+				{
+					//make the id string
+					$product_id_str = '('.implode(',', $product_id_list).')';
+					
+					//append to the query string
+					if(!$has_where)
+					{
+						$base_query = $base_query . 'WHERE(';
+						$has_where = TRUE;
+					}
+					//otherwise, assume there exists a where string and add an 'and'
+					else
+					{
+						$base_query = $base_query . 'AND';
+					}
+					
+					//append products to the query string
+					$base_query = $base_query . 
+						"(`product_price`.`product_id` IN $product_id_str)";
+				}
+			}
 		
-		/**
-		 * Gets all product IDs matching a query string
-		 * To reduce chances of SQL injection, 
-		 * the query string should only consist of alphanumerics and spaces. 
-		 * (the last thing in the brackets was a space)
-		 */
-		public function get_product_for_query($query)
-		{
-			$base_query = $this->get_base_product_query();
-			$base_query = $base_query . 
-			"
-				WHERE (`product`.`name` LIKE '%$query%' OR `product`.`description` LIKE '%$query%')
-			";
-			$sql_result = $this->db->query($base_query);
-			return $sql_result->result();
-		}
-		
-		/**
-		 * This is a base function to call to retrieve data about all products
-		 */
-		public function get_all_products()
-		{
-			$base_query = $this->get_base_product_query();
-			$sql_result = $this->db->query($base_query);
-			return $sql_result->result();
+			if($has_where) $base_query = $base_query . ')';
+			$results = $this->db->query($base_query, $data_arr);
+			return $results->result();
 		}
 		
 		/**
@@ -300,12 +521,12 @@
 		{
 			$this->db->select('string_facet.name AS facet_name, 
 				string_facet_value.value AS facet_value');
-			$this->db->from('string_facet_value_product');
+			$this->db->from('product_string_facet_value');
 			$this->db->join('string_facet_value', 
-				'string_facet_value.id = string_facet_value_product.string_facet_value_id');
+				'string_facet_value.id = product_string_facet_value.string_facet_value_id');
 			$this->db->join('string_facet', 
 				'string_facet_value.string_facet_id = string_facet.id');
-			$this->db->where('string_facet_value_product.product_id', $product_id);
+			$this->db->where('product_string_facet_value.product_id', $product_id);
 			$query = $this->db->get();
 			return $query->result();
 		}
@@ -340,7 +561,7 @@
 	  */
      public function remove_temporary_order($session_id)
      {
-       $order_id = get_temporary_order($session_id);
+       $order_id = $this->get_temporary_order($session_id);
        $this->db->delete('temporary_order_product', array('temporary_order_id'=>$order_id));
        $this->db->delete('temporary_order', array('id'=>$order_id));
      }
@@ -350,13 +571,18 @@
       */ 
     public function update_temporary_order($session_id, $product_id, $condition_id, $country_id, $qty)
      {
+		if($qty == null || $qty <= 0) 
+		{
+			$this->remove_product_from_temporary_order($session_id, $product_id, $condition_id, $country_id);
+			return;
+		}
        //create the temporary order if it does not exist
-       $order_id = get_temporary_order($session_id);
+       $order_id = $this->get_temporary_order($session_id);
        
         //the fields to change
         $record = array('temporary_order_id'=>$order_id, 
           'product_id'=>$product_id, 
-          'condition_id'=>$condition_id, 
+          'product_condition_id'=>$condition_id, 
           'country_id' =>$country_id, 
           'quantity' => $qty
          );
@@ -384,14 +610,18 @@
      /**
 	  * Removes a product from a temporary order 
 	  */
-     public function remove_product_from_temporary_order($session_id, $product_id)
+     public function remove_product_from_temporary_order($session_id, $product_id, $condition_id, $country_id)
      {
        //create the temporary order if it does not exist
-       $order_id = get_temporary_order($session_id);
+       $order_id = $this->get_temporary_order($session_id);
        
        //check if data exists
-       $conditions = array('product_id'=>$product_id, 'temporary_order_id' => $order_id);
-       $this->db->delete('temporary_order_id', $conditions);
+       $conditions = array('product_id'=>$product_id, 
+			'product_condition_id' =>$condition_id, 
+			'temporary_order_id' => $order_id,
+			'country_id' => $country_id
+		);
+       $this->db->delete('temporary_order_product', $conditions);
        
      }
      
@@ -430,7 +660,7 @@
 		$real_order_id = $this->db->insert_id();
 		
 		//get temporary order products
-		$order_id = get_temporary_order($session_id);
+		$order_id = $this->get_temporary_order($session_id);
 		$sql_res = $this->db->get_where('temporary_order_product', array('temporary_order_id' => $order_id));
 		$results = $sql_res->result();
 		foreach($results as $row)
@@ -446,6 +676,41 @@
 				$this->db->insert('order_product', $real_insert_data);
 		}
 		$this->db->trans_complete();
+	 }
+	 
+	 public function get_price($product_id, $condition_id, $country_id)
+	 {
+		$this->db->select('price');
+		$this->db->from('product_price');
+		$this->db->where('product_id', $product_id);
+		$this->db->where('condition_id', $condition_id);
+		$this->db->where('country_id', $country_id);
+		$this->db->where('start_date <= CURDATE()');
+		$this->db->where('(end_date > CURDATE() OR end_date IS NULL)');
+		$res = $this->db->get();
+		if($res->num_rows() <= 0) return -1;
+		else return $res->row()->price;
+	 }
+	 public function get_max_quantity($product_id, $condition_id, $country_id)
+	 {
+		$this->db->select('netqty');
+		$this->db->from('total_available_product');
+		$this->db->where('the_product_id', $product_id);
+		$this->db->where('the_product_condition_id', $condition_id);
+		$this->db->where('the_country_id', $country_id);
+		$res = $this->db->get();
+		if($res->num_rows() <= 0) return 0;
+		else return $res->row()->NetQty;
+	 }
+	 
+	 function get_name($product_id)
+	 {
+		$this->db->select('name');
+		$this->db->from('product');
+		$this->db->where('product.id', $product_id);
+		$res = $this->db->get();
+		if($res->num_rows() <= 0) return null;
+		else return $res->row()->name;
 	 }
 	}
 	

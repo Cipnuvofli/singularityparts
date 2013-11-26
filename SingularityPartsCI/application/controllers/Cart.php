@@ -1,54 +1,114 @@
 <?php
 class Cart extends CI_Controller{
-
-        function index()
+		function loadStuff()
+		{
+			include_once('Dashboard.php');
+			$this->load->helper('form');
+			$this->load->helper('html');
+			$this->load->helper('url');
+			$this->load->model('Cart_model');
+               
+			//check if login ok
+			if(!$this->session->userdata('logged_in') || !$this->session->userdata('person_id'))
+			{
+				redirect('');
+			}
+               
+			//load the standard models and views
+			$this->load->model('Front_model');
+			$data['customer_mode'] = Dashboard::is_mode_ok(FALSE);
+			$data['store_mode'] = Dashboard::is_mode_ok(TRUE);
+			$data['page_title'] = "Singularity Parts - Your Order History";
+			$this->load->view('Front_view',$data);
+		}
+		
+		function index()
         {
-                include_once('Dashboard.php');
-                $this->load->helper('form');
-                $this->load->helper('html');
-                $this->load->helper('url');
-				$this->load->model('Cart_Model');
-               
-                //check if login ok
-                if(!$this->session->userdata('logged_in') || !$this->session->userdata('person_id'))
-                {
-                        //insert real login fail code here
-                        redirect('');
-                }
-               
-                //load the standard models and views
-                $this->load->model('Front_model');
-                $data['customer_mode'] = Dashboard::is_mode_ok(FALSE);
-                $data['store_mode'] = Dashboard::is_mode_ok(TRUE);
-                $data['page_title'] = "Singularity Parts - Your Order History";
-                $this->load->view('Front_view',$data);
-               
+                $this->loadStuff();
                 //load the cart information.
                 $this->load->model('Cart_model');
-                $this->Cart_model->get_product_for_vehicle_and_query(123, 'hello');
                 echo('<br/><br/>');
-                $this->Cart_model->get_product_for_vehicle_and_query(array(123, 234), 'hello');
 				$this->load->view('cart_viewer');
         }
-		function add($id, $quantity, $price, $name)
+		function add($product_id, $condition_id, $country_id)
 		{
+			$this->loadStuff();
+			$price = $this->Cart_model->get_price($product_id, $condition_id, $country_id);
+			$available_qty = $this->Cart_model->get_max_quantity($product_id, $condition_id, $country_id);
+			$name = $this->Cart_model->get_name($product_id);
+			
+			//error handling
+			if($price === null || $available_qty === null || $name === null) 
+			show_error('null alert!');
+			//redirect('cart');
+			if($available_qty <= 0) redirect('cart');
+			
+			//check if already in cart
+			foreach ($this->cart->contents() as $items)
+			{
+				if($items['id'] == $product_id 
+					&& isset($items['options']['condition_id']) 
+					&& $items['options']['condition_id'] == $condition_id 
+					&& isset($items['options']['country_id']) 
+					&& $items['options']['country_id'] == $country_id)
+				{
+					redirect('cart');
+				}
+			}
+			
+			//insert into cart
+			$qty = 1;
 			$data = array(
-			'id' => $id,
-			'qty' =>1,
-			'price' => $price,
-			'name' => $name
+				'id' => $product_id,
+				'qty' =>$qty,
+				'price' => $price,
+				'name' => $name,
+				'options' =>array(
+					'condition_id'=>$condition_id,
+					'country_id'=>$country_id,
+					'max_qty' =>$available_qty,
+				)
 			);
 			$this->cart->insert($data);
+			
+			//insert into db
+			$session_id = $this->session->userdata('session_id');
+			$this->Cart_model->update_temporary_order($session_id, $product_id, $condition_id, $country_id, $qty);
 			redirect('cart');
 		}
 		function update()
 		{
-			foreach($this->cart->contents() as $items)
+			$this->loadStuff();
+			$session_id = $this->session->userdata('session_id');
+			foreach($this->cart->contents() as &$items)
 			{
+				
+				//get new qty, product id, condition id, country id
+				$curr_qty = $items['qty'];
+				$new_qty = $this->input->post($items['rowid']);
+				$product_id = $items['id'];
+				$condition_id = $items['options']['condition_id'];
+				$country_id = $items['options']['country_id'];
+				
+				//check if in bounds
+				$max_qty = $this->Cart_model->get_max_quantity($product_id, $condition_id, $country_id);
+				if($new_qty > $max_qty + $curr_qty) 
+				{
+					$items['options']['max_qty'] = $max_qty + $curr_qty;
+					continue;
+				}
+				
+				//update temporary order
+				$this->Cart_model->update_temporary_order(
+					$session_id, $product_id, $condition_id, $country_id, $new_qty); 
+					
+				//upate max qty info
+				$items['options']['max_qty'] = $max_qty + $curr_qty;
+				
+				//update data
 				$data = array(
 					'rowid' => $items['rowid'],
-					'qty' =>  $this->input->post($items['rowid'])
-				
+					'qty' =>  $new_qty,
 				);
 				$this->cart->update($data); 
 

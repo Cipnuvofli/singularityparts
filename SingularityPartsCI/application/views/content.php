@@ -1,6 +1,8 @@
 <div id = "Products">
 
-<?php $this->Cart_model->GenerateProductStubs();?>
+<?php
+	$products = $this->Cart_model->get_products(array());
+	$this->Cart_model->GenerateProductStubsForResult($products);?>
 
 
 
