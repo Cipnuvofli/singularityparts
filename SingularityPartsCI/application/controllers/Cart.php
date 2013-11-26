@@ -90,9 +90,20 @@ class Cart extends CI_Controller{
 				
 				//check if in bounds
 				$max_qty = $this->Cart_model->get_max_quantity($product_id, $condition_id, $country_id);
+				//emergency reset of data to ensure that the cart only has in stock items.
 				if($new_qty > $max_qty + $curr_qty) 
 				{
 					$items['options']['max_qty'] = $max_qty + $curr_qty;
+					$new_qty = min(1, $max_qty + $curr_qty);
+					$data = array(
+						'qty' => $new_qty,
+						'rowid'=> $items['rowid'];
+					) 
+					//update temporary order
+					$this->Cart_model->update_temporary_order(
+						$session_id, $product_id, $condition_id, $country_id, $new_qty);
+					$this->cart->update($data);
+
 					continue;
 				}
 				
