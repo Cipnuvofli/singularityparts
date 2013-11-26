@@ -157,7 +157,6 @@ class Cart extends CI_Controller{
                         $this->load->helper('html');
                         $this->load->model('user_model');
 						$this->load->model('cart_model');
-            $this->adjust_max_quantities();
 
                         $data['title']="Checkout";
                        
