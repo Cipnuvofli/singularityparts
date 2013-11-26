@@ -156,16 +156,21 @@ class Cart extends CI_Controller{
                         $this->load->helper('url');
                         $this->load->helper('html');
                         $this->load->model('user_model');
-						$this->load->model('cart_model');
-
+						$this->load->model('Cart_model');
+				
                         $data['title']="Checkout";
-                       
-                        $this->form_validation->set_rules('CC','Credit Card Number','required');
-                        $this->form_validation->set_rules('Code','Security Code','required');
+						$data['COD'] = $this->input->post('COD');
+						
+					   
+					   if(!isset($data['COD']))
+					   {
+						$this->form_validation->set_rules('CC','Credit Card Number','required');
+                        $this->form_validation->set_rules('Code','Security Code','required|max_length[3]');
+					   }
                         $this->form_validation->set_rules('Address','Address','required');
 						$this->form_validation->set_rules('City','City','required');
 						$this->form_validation->set_rules('state','State','required');
-						$this->form_validation->set_rules('Zipcode','Zipcode','required');
+						$this->form_validation->set_rules('Zipcode','Zipcode','required|numeric');
 						$this->form_validation->set_rules('Country','Country','required');
 						$this->form_validation->set_rules('Phone','Phone', 'required');
 												

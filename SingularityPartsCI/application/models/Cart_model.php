@@ -2,6 +2,109 @@
 	
 	class Cart_model extends CI_Model
 	{
+				//Performs Database interactions.
+		        function checkoutdb()
+                {
+								$data['COD'] = $this->input->post('COD');
+								$data['Address'] = $this->input->post('Address');
+                                $data['City'] =  $this->input->post('City');
+                                $data['State'] =  $this->input->post('State');
+                                $data['Zipcode'] = $this->input->post('Zipcode');
+                                $data['Country'] =  $this->input->post('Country');
+                                $data['Phone'] =  $this->input->post('Phone');
+                                $data['AmountDue'] = $this->cart->total();
+								$data['number_payments'] = 1;
+			
+								
+							
+							
+                                $odata['person_id'] = $this->session->userdata('person_id');
+								$odata['branch_id'] = 1;
+								$odata['order_date'] = date('Y-m-d');
+								$odata['shipping_tracking'] = 5555555555;
+								$odata['shipping_cost'] = 4.00;
+								$odata['number_payments'] = 1;
+								$odata['handling_fees'] = 4.00;
+								$odata['time_period_id'] = 1;
+								$odata['tax'] = 4.00;
+								
+				
+								
+								if(!isset($data['COD']))
+								{
+                                $ccdata['security_code'] =  $this->input->post('Code');
+								$ccdata['amount'] = $data['AmountDue'];
+								$ccdata['billing_address1'] = $data['address'];
+								$ccdata['City'] = $data['City'];
+								$ccdata['state'] = $data['State'];
+								$ccdata['postcode'] = $data['zipcode'];
+								$ccdata['exp_date'] = $this->input->post('exp_month').'/'.$this->input->post('exp_year');
+								$clear_cc = $this->input->post('CC');
+								$trim_cc = trim($clear_cc);
+								$ccdata['cc_number'] = $trim_cc;
+								$ccdata['type']='Unknown';
+                                $creditcardTypes = array(
+									array('Name'=>'American Express','cardLength'=>array(15),'cardPrefix'=>array('34', '37'))
+									,array('Name'=>'Maestro','cardLength'=>array(12, 13, 14, 15, 16, 17, 18, 19),'cardPrefix'=>array('5018', '5020', '5038', '6304', '6759', '6761', '6763'))
+									,array('Name'=>'Mastercard','cardLength'=>array(16),'cardPrefix'=>array('51', '52', '53', '54', '55'))
+									,array('Name'=>'Visa','cardLength'=>array(13,16),'cardPrefix'=>array('4'))
+									,array('Name'=>'JCB','cardLength'=>array(16),'cardPrefix'=>array('3528', '3529', '353', '354', '355', '356', '357', '358'))
+									,array('Name'=>'Discover','cardLength'=>array(16),'cardPrefix'=>array('6011', '622126', '622127', '622128', '622129', '62213',
+																'62214', '62215', '62216', '62217', '62218', '62219',
+																'6222', '6223', '6224', '6225', '6226', '6227', '6228',
+																'62290', '62291', '622920', '622921', '622922', '622923',
+																'622924', '622925', '644', '645', '646', '647', '648',
+																'649', '65'))
+									,array('Name'=>'Solo','cardLength'=>array(16, 18, 19),'cardPrefix'=>array('6334', '6767'))
+									,array('Name'=>'Unionpay','cardLength'=>array(16, 17, 18, 19),'cardPrefix'=>array('622126', '622127', '622128', '622129', '62213', '62214',
+																'62215', '62216', '62217', '62218', '62219', '6222', '6223',
+																'6224', '6225', '6226', '6227', '6228', '62290', '62291',
+																'622920', '622921', '622922', '622923', '622924', '622925'))
+									,array('Name'=>'Diners Club','cardLength'=>array(14),'cardPrefix'=>array('300', '301', '302', '303', '304', '305', '36'))
+									,array('Name'=>'Diners Club US','cardLength'=>array(16),'cardPrefix'=>array('54', '55'))
+									,array('Name'=>'Diners Club Carte Blanche','cardLength'=>array(14),'cardPrefix'=>array('300','305'))
+									,array('Name'=>'Laser','cardLength'=>array(16, 17, 18, 19),'cardPrefix'=>array('6304', '6706', '6771', '6709'))
+								);     
+								foreach (CreditcardType::$creditcardTypes as $card)
+								{
+									if (! in_array(strlen($trim_cc),$card['cardLength'])) 
+									{
+									continue;
+									}
+									$prefixes = '/^('.implode('|',$card['cardPrefix']).')/';            
+									if(preg_match($prefixes,$trim_cc) == 1 )
+									{
+									$ccdata['type']= $card['Name'];
+									break;
+									}
+								}
+								 $this->db->insert('cc_payment', $ccdata);
+								}
+                              
+								
+		
+                                $this->db->insert('order', $odata);
+								$opdata['order_id'] = $this->db->insert_id();
+								foreach($this->cart->contents() as $items)
+								{
+									$opdata['product_id']= $items['id'];
+									$opdata['product_condition_id'] = 1;
+									$opdata['country_id'] = 1;
+									$opdata['quantity'] = $items['qty'];
+									
+									$this->db->insert('order_product', $opdata);
+								}
+								$this->cart->destroy();
+                               
+                               
+               
+                       
+                               
+                               
+               
+               
+                }
+		
 		/**
 		 * Finishes loading information into a product result
 		 */
@@ -194,9 +297,9 @@
 		 * 'category_id' - either one category_id or an array of category_id
 		 * 'vehicle_id' - either one vehicle_id or an array of vehicle_id
 		 * 'search_string' - a string that the user types in a search box
-		 * 'product_id' - either one or an array
-		 * 'condition_id' - either one or an array
-		 * 'country_id'  - either one or an array
+		 * 'product_id' 
+		 * 'condition_id'
+		 * 'country_id' 
 		 *
 		 * The values returned can be found in get_base_product_query(), 
 		 * but as of now they are:
@@ -472,6 +575,7 @@
 			return $query->result();
 		}
 		
+
 		/**
 		 * Gets the int facet values for a product. The array elements are facet_name and facet_value. 
 		 * You will need to use something like the following to go through it:

@@ -34,8 +34,8 @@
 
 				<p>
 					<?php foreach ($this->cart->product_options($items['rowid']) as $option_name => $option_value): ?>
-
-						<strong><?php echo $option_name; ?>:</strong> <?php echo $option_value; ?>
+						
+						<strong><?php echo $option_name;  ?>:</strong> <?php echo $option_value; ?>
 
 					<?php endforeach; ?>
 				</p>
