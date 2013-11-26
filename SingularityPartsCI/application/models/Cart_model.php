@@ -194,9 +194,9 @@
 		 * 'category_id' - either one category_id or an array of category_id
 		 * 'vehicle_id' - either one vehicle_id or an array of vehicle_id
 		 * 'search_string' - a string that the user types in a search box
-		 * 'product_id' 
-		 * 'condition_id'
-		 * 'country_id' 
+		 * 'product_id' - either one or an array
+		 * 'condition_id' - either one or an array
+		 * 'country_id'  - either one or an array
 		 *
 		 * The values returned can be found in get_base_product_query(), 
 		 * but as of now they are:
