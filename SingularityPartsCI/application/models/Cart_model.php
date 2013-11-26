@@ -592,6 +592,8 @@
        $this->db->from('temporary_order_product');
        $this->db->where('temporary_order_id', $order_id);
        $this->db->where('product_id', $product_id);
+	   $this->db->where('product_condition_id', $condition_id);
+	   $this->db->where('country_id', $country_id);
        $query = $this->db->get();
        
        //data DNE
