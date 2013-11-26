@@ -114,18 +114,27 @@
 				echo '<p name= "price">Price: '.$row->product_price.' USD </p>';
 				echo '<p name= "CountryofOrigin">Country of Origin: '.$row->country_name .'</p>';
 				echo '<p name= "Condition"> Condition: '.$row->condition_name .'</p>';
-				echo '<p name= "Quantity"> Quantity Available as of '; 
-				echo date('Y-m-d H:i:s') . ' ' . date('T') . ': ';
-				echo $row->quantity_available.'</p>';
 				
 				//offer to add to cart
-				echo '<p>';
-				echo anchor(
-					'Cart/add/'.$row->product_id. '/' 
-					.$row->condition_id . '/' . $row->country_id, 
-					'Add to Cart', 
-					'title="Your Cart"');
-				echo '</p>';
+				if($row->quantity_available > 0)
+				{
+					echo '<p name= "Quantity"> Quantity Available as of '; 
+					echo date('Y-m-d H:i:s') . ' ' . date('T') . ': ';
+					echo $row->quantity_available.'</p>';
+					echo '<p>';
+					echo anchor(
+						'Cart/add/'.$row->product_id. '/' 
+						.$row->condition_id . '/' . $row->country_id, 
+						'Add to Cart', 
+						'title="Your Cart"');
+					echo '</p>';
+				}
+				else
+				{
+					echo '<p name= "Quantity"> Out of Stock as of '; 
+					echo date('Y-m-d H:i:s') . ' ' . date('T');
+					echo '</p>';
+				}
 				echo '<hr/>';
 			}	
 		}

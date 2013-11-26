@@ -38,9 +38,7 @@ class Cart extends CI_Controller{
 			$name = $this->Cart_model->get_name($product_id);
 			
 			//error handling
-			if($price === null || $available_qty === null || $name === null) 
-			show_error('null alert!');
-			//redirect('cart');
+			if($price === null || $available_qty === null || $name === null) redirect('cart');
 			if($available_qty <= 0) redirect('cart');
 			
 			//check if already in cart
