@@ -8,8 +8,8 @@
 <tr>
   <th id = "QTY">QTY</th>
   <th id = "IDesc">Item Description</th>
-  <th id = "Price">Item Price</th>
-  <th id = "Stot">Sub-Total</th>
+  <th style = "Text-align:right">Item Price</th>
+  <th style = "Text-align:right">Sub-Total</th>
 </tr>
 
 <?php $i = 1; ?>
@@ -19,7 +19,7 @@
 	<?php echo form_hidden($i.'[rowid]', $items['rowid']); ?>
 
 	<tr>
-	  <td><?php echo form_input(array('name' => $i.'[qty]', 'value' => $items['qty'], 'maxlength' => '3', 'size' => '5')); ?></td>
+	  <td><?php echo form_input(array('name' => $items['rowid'], 'value' => $items['qty'], 'maxlength' => '3', 'size' => '5')); ?></td>
 	  <td>
 		<?php echo $items['name']; ?>
 

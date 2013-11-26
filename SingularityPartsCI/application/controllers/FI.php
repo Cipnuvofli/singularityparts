@@ -24,6 +24,7 @@ class FI extends CI_Controller
                 $data['store_mode'] = Dashboard::is_mode_ok(TRUE);
                 $data['page_title'] = "Singularity Parts - Checkout";
                 $this->load->view('FI',$data);
+				print_r($this->cart->contents());
                
 	}
 

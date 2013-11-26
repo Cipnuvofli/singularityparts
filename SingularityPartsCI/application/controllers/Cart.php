@@ -43,11 +43,16 @@ class Cart extends CI_Controller{
 		}
 		function update()
 		{
-			$data = array(
-               //'rowid' => array(),
-               //'qty'   => array()
-            );
-			$this->cart->update($data); 
+			foreach($this->cart->contents() as $items)
+			{
+				$data = array(
+					'rowid' => $items['rowid'],
+					'qty' =>  $this->input->post($items['rowid'])
+				
+				);
+				$this->cart->update($data); 
+
+			}	
 			redirect('cart');
 		}
 		function checkout()
