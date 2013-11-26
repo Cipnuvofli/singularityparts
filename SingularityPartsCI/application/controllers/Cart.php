@@ -100,6 +100,17 @@ class Cart extends CI_Controller{
 			//redirect
 			redirect('cart');
 		}
+		function check_select($post_string)
+	{
+		
+		if($post_string == '0')
+		{
+			$this->form_validation->set_message('check_select', 'Need to select something in %s');
+			return false;
+		}
+		else return true;
+	}
+	
 		function update()
 		{
 			$this->loadStuff();
@@ -162,30 +173,31 @@ class Cart extends CI_Controller{
 						$data['COD'] = $this->input->post('COD');
 						
 					   
-					   if(!isset($data['COD']))
+					   if(!isset($data['COD']) || !$data['COD'])
 					   {
-						$this->form_validation->set_rules('CC','Credit Card Number','required');
+						$this->form_validation->set_rules('CC','Credit Card Number','required|numeric');
                         $this->form_validation->set_rules('Code','Security Code','required|max_length[3]');
 					   }
-                        $this->form_validation->set_rules('Address','Address','required');
+                        $this->form_validation->set_rules('Address1','Address1','required');
 						$this->form_validation->set_rules('City','City','required');
-						$this->form_validation->set_rules('state','State','required');
-						$this->form_validation->set_rules('Zipcode','Zipcode','required|numeric');
-						$this->form_validation->set_rules('Country','Country','required');
+						$this->form_validation->set_rules('state','State','required|callback_check_select');
+						$this->form_validation->set_rules('Zipcode','Zipcode','required');
 						$this->form_validation->set_rules('Phone','Phone', 'required');
 												
                         if($this->form_validation->run() === FALSE)
-                        {
-								$this->load->view('Failure');
+                        {	
+							$this->load->model('User_model');
+							$data['states'] = $this->user_model->get_states();
+							$this->load->view('FI', $data);
+							$this->load->view('Failure');
                         }
                         else
                         {
                                 $this->Cart_model->checkoutdb();
+								$this->cart->destroy();
                                 $this->load->view('success');
                        
                         }
-						//Purge Shopping cart
-						redirect('Front');
 
 		}
 			public static function has_access()
