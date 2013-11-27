@@ -1,6 +1,8 @@
+
+
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
  
-class Product extends CI_Controller {
+class UserAccountEdit extends CI_Controller {
  
 	private $hasFront = false;
 	function __construct()
@@ -23,26 +25,12 @@ class Product extends CI_Controller {
 	 */
 	public static function has_access()
 	{
-		$CI = get_instance();
-		if(!$CI->session->userdata('person_id') || 
-			!$CI->session->userdata('logged_in')) return false;
-		$CI->load->model('RBAC_model');
-		if(!$CI->RBAC_model->has_permission(
-				$CI->session->userdata('person_id'), 
-				'product',
-				array(	
-					'role_permission.can_read' => TRUE, 
-					'role_permission.can_add'=>TRUE,
-					'role_permission.can_modify' => TRUE,
-					'role_permission.can_delete' => TRUE,
-					
-				)
-			)
-		)
-		{
-			return false;
-		}
-		else return true;
+				$CI = get_instance();
+				
+				//check if login ok
+				if(!$CI->session->userdata('logged_in') 
+					|| !$CI->session->userdata('person_id')) return false;
+				else return true;
 	}
 	
 	/**
@@ -50,12 +38,12 @@ class Product extends CI_Controller {
 	 */ 
 	public static function get_controller_name()
 	{
-		return 'Product List';
+		return 'Edit Your Account Information';
 	}
 	
 	public static function is_store_mode()
 	{
-		return TRUE;
+		return FALSE;
 	}
 	
 	function showFront()
@@ -87,7 +75,7 @@ class Product extends CI_Controller {
 		
 		//load view
 		$this->load->library('Grocery_CRUD');
-        $this->grocery_crud->set_table('product');
+        $this->grocery_crud->set_table('product_condition');
         $output = $this->grocery_crud->render();
 		$this->load->view('grocery_crud_view',$output);
 
