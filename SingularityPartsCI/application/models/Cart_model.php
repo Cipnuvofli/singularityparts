@@ -306,6 +306,7 @@
 				$data_arr[] = $like_str;
 				$data_arr[] = $like_str;
 				$data_arr[] = $like_str;
+				$data_arr[] = $like_str;
 			
 				//append to the query string
 				if(!$has_where)
@@ -324,7 +325,8 @@
 					OR `product`.`description` LIKE ?
 					OR `manufacturer`.`name` LIKE ? 
 					OR `product_condition`.`name` LIKE ? 
-					OR `country`.`name` LIKE ?';
+					OR `country`.`name` LIKE ?
+					OR `product_category`.`name` LIKE ?';
 				
 				//we have a part number; add to query
 				if($this->is_unsigned_int($search_string))
