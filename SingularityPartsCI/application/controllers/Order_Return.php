@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
  
-class Orders_GC extends CI_Controller {
+class order_return extends CI_Controller {
  
 	private $hasFront = false;
 	function __construct()
@@ -29,7 +29,7 @@ class Orders_GC extends CI_Controller {
 		$CI->load->model('RBAC_model');
 		if(!$CI->RBAC_model->has_permission(
 				$CI->session->userdata('person_id'), 
-				'order',
+				'order_return',
 				array(	
 					'role_permission.can_read' => TRUE, 
 					'role_permission.can_add'=>TRUE,
@@ -50,7 +50,7 @@ class Orders_GC extends CI_Controller {
 	 */ 
 	public static function get_controller_name()
 	{
-		return 'Orders Listing';
+		return 'Returned Orders';
 	}
 	
 	public static function is_store_mode()
@@ -87,9 +87,10 @@ class Orders_GC extends CI_Controller {
 		
 		//load view
 		$this->load->library('Grocery_CRUD');
-        $this->grocery_crud->set_table('order');
+        $this->grocery_crud->set_table('order_return');
         $output = $this->grocery_crud->render();
 		$this->load->view('grocery_crud_view',$output);
+
 		
     }
 }
