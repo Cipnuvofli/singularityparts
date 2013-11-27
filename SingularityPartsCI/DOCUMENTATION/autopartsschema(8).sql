@@ -1585,8 +1585,8 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 `order_product`.`product_condition_id` AS `Product_Condition_ID`,
 `order_product`.`country_id` AS `Country_ID`,sum(`order_product`.`quantity`) AS `TotalQty` 
 from `order_product` left outer join `order_cancellation` on (`order_product`.`order_id` = `order_cancellation`.`order_id`)
-group by `order_product`.`product_id`,`order_product`.`product_condition_id`,`order_product`.`country_id`)
-where `order_cancellation`.`order_id` is null;
+where `order_cancellation`.`order_id` is null
+group by `order_product`.`product_id`,`order_product`.`product_condition_id`,`order_product`.`country_id`);
 
 -- --------------------------------------------------------
 
