@@ -890,3 +890,538 @@ DEBUG - 2013-11-27 04:23:02 --> Form Validation Class Initialized
 DEBUG - 2013-11-27 04:23:02 --> File loaded: application/views/Self_Service_Area.php
 DEBUG - 2013-11-27 04:23:02 --> Final output sent to browser
 DEBUG - 2013-11-27 04:23:02 --> Total execution time: 0.3100
+DEBUG - 2013-11-27 05:11:02 --> Config Class Initialized
+DEBUG - 2013-11-27 05:11:02 --> Hooks Class Initialized
+DEBUG - 2013-11-27 05:11:02 --> Utf8 Class Initialized
+DEBUG - 2013-11-27 05:11:02 --> UTF-8 Support Enabled
+DEBUG - 2013-11-27 05:11:02 --> URI Class Initialized
+DEBUG - 2013-11-27 05:11:02 --> Router Class Initialized
+DEBUG - 2013-11-27 05:11:02 --> No URI present. Default controller set.
+DEBUG - 2013-11-27 05:11:02 --> Output Class Initialized
+DEBUG - 2013-11-27 05:11:02 --> Security Class Initialized
+DEBUG - 2013-11-27 05:11:02 --> Input Class Initialized
+DEBUG - 2013-11-27 05:11:02 --> XSS Filtering completed
+DEBUG - 2013-11-27 05:11:02 --> XSS Filtering completed
+DEBUG - 2013-11-27 05:11:02 --> XSS Filtering completed
+DEBUG - 2013-11-27 05:11:03 --> CRSF cookie Set
+DEBUG - 2013-11-27 05:11:03 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-11-27 05:11:03 --> Language Class Initialized
+DEBUG - 2013-11-27 05:11:03 --> Loader Class Initialized
+DEBUG - 2013-11-27 05:11:03 --> Helper loaded: url_helper
+DEBUG - 2013-11-27 05:11:03 --> Database Driver Class Initialized
+DEBUG - 2013-11-27 05:11:03 --> Session Class Initialized
+DEBUG - 2013-11-27 05:11:03 --> Helper loaded: string_helper
+DEBUG - 2013-11-27 05:11:03 --> Session garbage collection performed.
+DEBUG - 2013-11-27 05:11:03 --> Session routines successfully run
+DEBUG - 2013-11-27 05:11:03 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2013-11-27 05:11:03 --> Cart Class Initialized
+DEBUG - 2013-11-27 05:11:03 --> Model Class Initialized
+DEBUG - 2013-11-27 05:11:03 --> Model Class Initialized
+DEBUG - 2013-11-27 05:11:03 --> Controller Class Initialized
+DEBUG - 2013-11-27 05:11:03 --> Helper loaded: form_helper
+DEBUG - 2013-11-27 05:11:03 --> Helper loaded: html_helper
+DEBUG - 2013-11-27 05:11:03 --> Model Class Initialized
+DEBUG - 2013-11-27 05:11:03 --> Form Validation Class Initialized
+DEBUG - 2013-11-27 05:11:03 --> Model Class Initialized
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/Accountlist.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/Bool_Facet.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/Bool_Facet_Value.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/Bool_Facet_Value_Product.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/Bool_Facet_Value_Vehicle.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/Branch.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/Branch_Inventory_Received_Date.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/Branch_Inventory_Request.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/Branch_Inventory_Request_Product.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/Branch_Inventory_Return.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/Branch_Inventory_Return_Product.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/CC_Payment.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/Cart.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/Cash_Payment.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/Country.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/Department.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/FI.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/Int_Facet.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/Int_Facet_Value_Product.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/Int_Facet_Value_Vehicle.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/Job.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/Job_Role.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/Manufacturer.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/Order.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/OrderHistory.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/Order_Product.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/Order_Return.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/Order_Return_Product.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/Order_Ship.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/Product.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/Product_Category.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/Product_Condition.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/Product_Vehicle.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/Reason.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/Register.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/Role.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/Role_Permission.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/SelfServiceArea.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/State.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/String_Facet_Value_Product.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/String_Facet_Value_Vehicle.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/Supervisor_Pairing.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/Time_Period.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/UserAccountEdit.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/Vehicle.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/Vehicle_Model.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/Vendor_Product_Price.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/Vendors.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/WorkHistory.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/employee_branch_history.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/employee_clock.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/employee_reimbursement.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/float_facet.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/float_facet_value.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/float_facet_value_product.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/float_facet_value_vehicle.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/held_product.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/int_facet_value.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/job_pay.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/job_posting.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/job_posting_filling.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/make.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/order_cancellation.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/password_hash.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/processing_type.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/productPrice.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/controllers/product_string_facet_value.php
+DEBUG - 2013-11-27 05:11:03 --> Model Class Initialized
+DEBUG - 2013-11-27 05:11:03 --> ControllerList class already loaded. Second attempt ignored.
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/views/Front_view.php
+DEBUG - 2013-11-27 05:11:03 --> File loaded: application/views/content.php
+DEBUG - 2013-11-27 05:11:03 --> Final output sent to browser
+DEBUG - 2013-11-27 05:11:03 --> Total execution time: 1.0370
+DEBUG - 2013-11-27 05:11:06 --> Config Class Initialized
+DEBUG - 2013-11-27 05:11:06 --> Hooks Class Initialized
+DEBUG - 2013-11-27 05:11:06 --> Utf8 Class Initialized
+DEBUG - 2013-11-27 05:11:06 --> UTF-8 Support Enabled
+DEBUG - 2013-11-27 05:11:06 --> URI Class Initialized
+DEBUG - 2013-11-27 05:11:06 --> Router Class Initialized
+DEBUG - 2013-11-27 05:11:06 --> No URI present. Default controller set.
+DEBUG - 2013-11-27 05:11:06 --> Output Class Initialized
+DEBUG - 2013-11-27 05:11:06 --> Security Class Initialized
+DEBUG - 2013-11-27 05:11:06 --> Input Class Initialized
+DEBUG - 2013-11-27 05:11:06 --> XSS Filtering completed
+DEBUG - 2013-11-27 05:11:06 --> XSS Filtering completed
+DEBUG - 2013-11-27 05:11:06 --> XSS Filtering completed
+DEBUG - 2013-11-27 05:11:06 --> CRSF cookie Set
+DEBUG - 2013-11-27 05:11:06 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-11-27 05:11:06 --> Language Class Initialized
+DEBUG - 2013-11-27 05:11:06 --> Loader Class Initialized
+DEBUG - 2013-11-27 05:11:06 --> Helper loaded: url_helper
+DEBUG - 2013-11-27 05:11:06 --> Database Driver Class Initialized
+DEBUG - 2013-11-27 05:11:06 --> Session Class Initialized
+DEBUG - 2013-11-27 05:11:06 --> Helper loaded: string_helper
+DEBUG - 2013-11-27 05:11:06 --> Session garbage collection performed.
+DEBUG - 2013-11-27 05:11:06 --> Session routines successfully run
+DEBUG - 2013-11-27 05:11:06 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2013-11-27 05:11:06 --> Cart Class Initialized
+DEBUG - 2013-11-27 05:11:06 --> Model Class Initialized
+DEBUG - 2013-11-27 05:11:06 --> Model Class Initialized
+DEBUG - 2013-11-27 05:11:06 --> Controller Class Initialized
+DEBUG - 2013-11-27 05:11:06 --> Helper loaded: form_helper
+DEBUG - 2013-11-27 05:11:06 --> Helper loaded: html_helper
+DEBUG - 2013-11-27 05:11:06 --> Model Class Initialized
+DEBUG - 2013-11-27 05:11:06 --> Form Validation Class Initialized
+DEBUG - 2013-11-27 05:11:06 --> Model Class Initialized
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/Accountlist.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/Bool_Facet.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/Bool_Facet_Value.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/Bool_Facet_Value_Product.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/Bool_Facet_Value_Vehicle.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/Branch.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/Branch_Inventory_Received_Date.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/Branch_Inventory_Request.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/Branch_Inventory_Request_Product.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/Branch_Inventory_Return.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/Branch_Inventory_Return_Product.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/CC_Payment.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/Cart.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/Cash_Payment.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/Country.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/Department.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/FI.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/Int_Facet.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/Int_Facet_Value_Product.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/Int_Facet_Value_Vehicle.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/Job.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/Job_Role.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/Manufacturer.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/Order.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/OrderHistory.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/Order_Product.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/Order_Return.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/Order_Return_Product.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/Order_Ship.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/Product.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/Product_Category.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/Product_Condition.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/Product_Vehicle.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/Reason.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/Register.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/Role.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/Role_Permission.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/SelfServiceArea.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/State.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/String_Facet_Value_Product.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/String_Facet_Value_Vehicle.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/Supervisor_Pairing.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/Time_Period.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/UserAccountEdit.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/Vehicle.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/Vehicle_Model.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/Vendor_Product_Price.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/Vendors.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/WorkHistory.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/employee_branch_history.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/employee_clock.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/employee_reimbursement.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/float_facet.php
+DEBUG - 2013-11-27 05:11:06 --> File loaded: application/controllers/float_facet_value.php
+DEBUG - 2013-11-27 05:11:07 --> File loaded: application/controllers/float_facet_value_product.php
+DEBUG - 2013-11-27 05:11:07 --> File loaded: application/controllers/float_facet_value_vehicle.php
+DEBUG - 2013-11-27 05:11:07 --> File loaded: application/controllers/held_product.php
+DEBUG - 2013-11-27 05:11:07 --> File loaded: application/controllers/int_facet_value.php
+DEBUG - 2013-11-27 05:11:07 --> File loaded: application/controllers/job_pay.php
+DEBUG - 2013-11-27 05:11:07 --> File loaded: application/controllers/job_posting.php
+DEBUG - 2013-11-27 05:11:07 --> File loaded: application/controllers/job_posting_filling.php
+DEBUG - 2013-11-27 05:11:07 --> File loaded: application/controllers/make.php
+DEBUG - 2013-11-27 05:11:07 --> File loaded: application/controllers/order_cancellation.php
+DEBUG - 2013-11-27 05:11:07 --> File loaded: application/controllers/password_hash.php
+DEBUG - 2013-11-27 05:11:07 --> File loaded: application/controllers/processing_type.php
+DEBUG - 2013-11-27 05:11:07 --> File loaded: application/controllers/productPrice.php
+DEBUG - 2013-11-27 05:11:07 --> File loaded: application/controllers/product_string_facet_value.php
+DEBUG - 2013-11-27 05:11:07 --> Model Class Initialized
+DEBUG - 2013-11-27 05:11:07 --> ControllerList class already loaded. Second attempt ignored.
+DEBUG - 2013-11-27 05:11:07 --> File loaded: application/views/Front_view.php
+DEBUG - 2013-11-27 05:11:07 --> File loaded: application/views/content.php
+DEBUG - 2013-11-27 05:11:07 --> Final output sent to browser
+DEBUG - 2013-11-27 05:11:07 --> Total execution time: 0.9710
+DEBUG - 2013-11-27 05:11:10 --> Config Class Initialized
+DEBUG - 2013-11-27 05:11:10 --> Hooks Class Initialized
+DEBUG - 2013-11-27 05:11:10 --> Utf8 Class Initialized
+DEBUG - 2013-11-27 05:11:10 --> UTF-8 Support Enabled
+DEBUG - 2013-11-27 05:11:10 --> URI Class Initialized
+DEBUG - 2013-11-27 05:11:10 --> Router Class Initialized
+DEBUG - 2013-11-27 05:11:10 --> Output Class Initialized
+DEBUG - 2013-11-27 05:11:10 --> Security Class Initialized
+DEBUG - 2013-11-27 05:11:10 --> Input Class Initialized
+DEBUG - 2013-11-27 05:11:10 --> XSS Filtering completed
+DEBUG - 2013-11-27 05:11:10 --> XSS Filtering completed
+DEBUG - 2013-11-27 05:11:10 --> XSS Filtering completed
+DEBUG - 2013-11-27 05:11:10 --> CRSF cookie Set
+DEBUG - 2013-11-27 05:11:10 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-11-27 05:11:10 --> Language Class Initialized
+DEBUG - 2013-11-27 05:11:10 --> Loader Class Initialized
+DEBUG - 2013-11-27 05:11:10 --> Helper loaded: url_helper
+DEBUG - 2013-11-27 05:11:10 --> Database Driver Class Initialized
+DEBUG - 2013-11-27 05:11:10 --> Session Class Initialized
+DEBUG - 2013-11-27 05:11:10 --> Helper loaded: string_helper
+DEBUG - 2013-11-27 05:11:10 --> Session garbage collection performed.
+DEBUG - 2013-11-27 05:11:10 --> Session routines successfully run
+DEBUG - 2013-11-27 05:11:10 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2013-11-27 05:11:10 --> Cart Class Initialized
+DEBUG - 2013-11-27 05:11:10 --> Model Class Initialized
+DEBUG - 2013-11-27 05:11:10 --> Model Class Initialized
+DEBUG - 2013-11-27 05:11:10 --> Controller Class Initialized
+DEBUG - 2013-11-27 05:11:10 --> Helper loaded: form_helper
+DEBUG - 2013-11-27 05:11:10 --> Helper loaded: html_helper
+DEBUG - 2013-11-27 05:11:10 --> Model Class Initialized
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/Accountlist.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/Bool_Facet.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/Bool_Facet_Value.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/Bool_Facet_Value_Product.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/Bool_Facet_Value_Vehicle.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/Branch.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/Branch_Inventory_Received_Date.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/Branch_Inventory_Request.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/Branch_Inventory_Request_Product.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/Branch_Inventory_Return.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/Branch_Inventory_Return_Product.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/CC_Payment.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/Cart.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/Cash_Payment.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/Country.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/Department.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/FI.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/Front.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/Int_Facet.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/Int_Facet_Value_Product.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/Int_Facet_Value_Vehicle.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/Job.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/Job_Role.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/Manufacturer.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/Order.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/OrderHistory.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/Order_Product.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/Order_Return.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/Order_Return_Product.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/Order_Ship.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/Product.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/Product_Category.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/Product_Condition.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/Product_Vehicle.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/Reason.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/Register.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/Role.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/Role_Permission.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/SelfServiceArea.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/State.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/String_Facet_Value_Product.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/String_Facet_Value_Vehicle.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/Supervisor_Pairing.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/Time_Period.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/UserAccountEdit.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/Vehicle.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/Vehicle_Model.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/Vendor_Product_Price.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/Vendors.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/WorkHistory.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/employee_branch_history.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/employee_clock.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/employee_reimbursement.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/float_facet.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/float_facet_value.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/float_facet_value_product.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/float_facet_value_vehicle.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/held_product.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/int_facet_value.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/job_pay.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/job_posting.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/job_posting_filling.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/make.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/order_cancellation.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/password_hash.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/processing_type.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/productPrice.php
+DEBUG - 2013-11-27 05:11:10 --> File loaded: application/controllers/product_string_facet_value.php
+DEBUG - 2013-11-27 05:11:10 --> Model Class Initialized
+DEBUG - 2013-11-27 05:11:10 --> ControllerList class already loaded. Second attempt ignored.
+DEBUG - 2013-11-27 05:11:10 --> Model Class Initialized
+DEBUG - 2013-11-27 05:11:10 --> ControllerList class already loaded. Second attempt ignored.
+DEBUG - 2013-11-27 05:11:11 --> File loaded: application/views/Front_view.php
+DEBUG - 2013-11-27 05:11:11 --> ControllerList class already loaded. Second attempt ignored.
+DEBUG - 2013-11-27 05:11:11 --> File loaded: application/views/Dashboard_view.php
+DEBUG - 2013-11-27 05:11:11 --> Final output sent to browser
+DEBUG - 2013-11-27 05:11:11 --> Total execution time: 1.0260
+DEBUG - 2013-11-27 05:11:13 --> Config Class Initialized
+DEBUG - 2013-11-27 05:11:13 --> Hooks Class Initialized
+DEBUG - 2013-11-27 05:11:13 --> Utf8 Class Initialized
+DEBUG - 2013-11-27 05:11:13 --> UTF-8 Support Enabled
+DEBUG - 2013-11-27 05:11:13 --> URI Class Initialized
+DEBUG - 2013-11-27 05:11:13 --> Router Class Initialized
+DEBUG - 2013-11-27 05:11:13 --> Output Class Initialized
+DEBUG - 2013-11-27 05:11:13 --> Security Class Initialized
+DEBUG - 2013-11-27 05:11:13 --> Input Class Initialized
+DEBUG - 2013-11-27 05:11:13 --> XSS Filtering completed
+DEBUG - 2013-11-27 05:11:13 --> XSS Filtering completed
+DEBUG - 2013-11-27 05:11:13 --> XSS Filtering completed
+DEBUG - 2013-11-27 05:11:13 --> CRSF cookie Set
+DEBUG - 2013-11-27 05:11:13 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-11-27 05:11:13 --> Language Class Initialized
+DEBUG - 2013-11-27 05:11:13 --> Loader Class Initialized
+DEBUG - 2013-11-27 05:11:13 --> Helper loaded: url_helper
+DEBUG - 2013-11-27 05:11:13 --> Database Driver Class Initialized
+DEBUG - 2013-11-27 05:11:13 --> Session Class Initialized
+DEBUG - 2013-11-27 05:11:13 --> Helper loaded: string_helper
+DEBUG - 2013-11-27 05:11:13 --> Session garbage collection performed.
+DEBUG - 2013-11-27 05:11:13 --> Session routines successfully run
+DEBUG - 2013-11-27 05:11:13 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2013-11-27 05:11:13 --> Cart Class Initialized
+DEBUG - 2013-11-27 05:11:13 --> Model Class Initialized
+DEBUG - 2013-11-27 05:11:13 --> Model Class Initialized
+DEBUG - 2013-11-27 05:11:13 --> Controller Class Initialized
+DEBUG - 2013-11-27 05:11:13 --> Helper loaded: form_helper
+DEBUG - 2013-11-27 05:11:13 --> Helper loaded: html_helper
+DEBUG - 2013-11-27 05:11:13 --> Form Validation Class Initialized
+DEBUG - 2013-11-27 05:11:13 --> Model Class Initialized
+DEBUG - 2013-11-27 05:11:13 --> File loaded: application/controllers/Accountlist.php
+DEBUG - 2013-11-27 05:11:13 --> File loaded: application/controllers/Bool_Facet.php
+DEBUG - 2013-11-27 05:11:13 --> File loaded: application/controllers/Bool_Facet_Value.php
+DEBUG - 2013-11-27 05:11:13 --> File loaded: application/controllers/Bool_Facet_Value_Product.php
+DEBUG - 2013-11-27 05:11:13 --> File loaded: application/controllers/Bool_Facet_Value_Vehicle.php
+DEBUG - 2013-11-27 05:11:13 --> File loaded: application/controllers/Branch.php
+DEBUG - 2013-11-27 05:11:13 --> File loaded: application/controllers/Branch_Inventory_Received_Date.php
+DEBUG - 2013-11-27 05:11:13 --> File loaded: application/controllers/Branch_Inventory_Request.php
+DEBUG - 2013-11-27 05:11:13 --> File loaded: application/controllers/Branch_Inventory_Request_Product.php
+DEBUG - 2013-11-27 05:11:13 --> File loaded: application/controllers/Branch_Inventory_Return.php
+DEBUG - 2013-11-27 05:11:13 --> File loaded: application/controllers/Branch_Inventory_Return_Product.php
+DEBUG - 2013-11-27 05:11:13 --> File loaded: application/controllers/CC_Payment.php
+DEBUG - 2013-11-27 05:11:13 --> File loaded: application/controllers/Cart.php
+DEBUG - 2013-11-27 05:11:13 --> File loaded: application/controllers/Cash_Payment.php
+DEBUG - 2013-11-27 05:11:13 --> File loaded: application/controllers/Country.php
+DEBUG - 2013-11-27 05:11:13 --> File loaded: application/controllers/Department.php
+DEBUG - 2013-11-27 05:11:13 --> File loaded: application/controllers/FI.php
+DEBUG - 2013-11-27 05:11:13 --> File loaded: application/controllers/Front.php
+DEBUG - 2013-11-27 05:11:13 --> File loaded: application/controllers/Int_Facet.php
+DEBUG - 2013-11-27 05:11:13 --> File loaded: application/controllers/Int_Facet_Value_Product.php
+DEBUG - 2013-11-27 05:11:13 --> File loaded: application/controllers/Int_Facet_Value_Vehicle.php
+DEBUG - 2013-11-27 05:11:13 --> File loaded: application/controllers/Job.php
+DEBUG - 2013-11-27 05:11:13 --> File loaded: application/controllers/Job_Role.php
+DEBUG - 2013-11-27 05:11:13 --> File loaded: application/controllers/Manufacturer.php
+DEBUG - 2013-11-27 05:11:13 --> File loaded: application/controllers/Order.php
+DEBUG - 2013-11-27 05:11:13 --> File loaded: application/controllers/OrderHistory.php
+DEBUG - 2013-11-27 05:11:13 --> File loaded: application/controllers/Order_Product.php
+DEBUG - 2013-11-27 05:11:13 --> File loaded: application/controllers/Order_Return.php
+DEBUG - 2013-11-27 05:11:13 --> File loaded: application/controllers/Order_Return_Product.php
+DEBUG - 2013-11-27 05:11:13 --> File loaded: application/controllers/Order_Ship.php
+DEBUG - 2013-11-27 05:11:13 --> File loaded: application/controllers/Product.php
+DEBUG - 2013-11-27 05:11:13 --> File loaded: application/controllers/Product_Category.php
+DEBUG - 2013-11-27 05:11:14 --> File loaded: application/controllers/Product_Condition.php
+DEBUG - 2013-11-27 05:11:14 --> File loaded: application/controllers/Product_Vehicle.php
+DEBUG - 2013-11-27 05:11:14 --> File loaded: application/controllers/Reason.php
+DEBUG - 2013-11-27 05:11:14 --> File loaded: application/controllers/Register.php
+DEBUG - 2013-11-27 05:11:14 --> File loaded: application/controllers/Role.php
+DEBUG - 2013-11-27 05:11:14 --> File loaded: application/controllers/Role_Permission.php
+DEBUG - 2013-11-27 05:11:14 --> File loaded: application/controllers/SelfServiceArea.php
+DEBUG - 2013-11-27 05:11:14 --> File loaded: application/controllers/State.php
+DEBUG - 2013-11-27 05:11:14 --> File loaded: application/controllers/String_Facet_Value_Product.php
+DEBUG - 2013-11-27 05:11:14 --> File loaded: application/controllers/String_Facet_Value_Vehicle.php
+DEBUG - 2013-11-27 05:11:14 --> File loaded: application/controllers/Supervisor_Pairing.php
+DEBUG - 2013-11-27 05:11:14 --> File loaded: application/controllers/Time_Period.php
+DEBUG - 2013-11-27 05:11:14 --> File loaded: application/controllers/Vehicle.php
+DEBUG - 2013-11-27 05:11:14 --> File loaded: application/controllers/Vehicle_Model.php
+DEBUG - 2013-11-27 05:11:14 --> File loaded: application/controllers/Vendor_Product_Price.php
+DEBUG - 2013-11-27 05:11:14 --> File loaded: application/controllers/Vendors.php
+DEBUG - 2013-11-27 05:11:14 --> File loaded: application/controllers/WorkHistory.php
+DEBUG - 2013-11-27 05:11:14 --> File loaded: application/controllers/employee_branch_history.php
+DEBUG - 2013-11-27 05:11:14 --> File loaded: application/controllers/employee_clock.php
+DEBUG - 2013-11-27 05:11:14 --> File loaded: application/controllers/employee_reimbursement.php
+DEBUG - 2013-11-27 05:11:14 --> File loaded: application/controllers/float_facet.php
+DEBUG - 2013-11-27 05:11:14 --> File loaded: application/controllers/float_facet_value.php
+DEBUG - 2013-11-27 05:11:14 --> File loaded: application/controllers/float_facet_value_product.php
+DEBUG - 2013-11-27 05:11:14 --> File loaded: application/controllers/float_facet_value_vehicle.php
+DEBUG - 2013-11-27 05:11:14 --> File loaded: application/controllers/held_product.php
+DEBUG - 2013-11-27 05:11:14 --> File loaded: application/controllers/int_facet_value.php
+DEBUG - 2013-11-27 05:11:14 --> File loaded: application/controllers/job_pay.php
+DEBUG - 2013-11-27 05:11:14 --> File loaded: application/controllers/job_posting.php
+DEBUG - 2013-11-27 05:11:14 --> File loaded: application/controllers/job_posting_filling.php
+DEBUG - 2013-11-27 05:11:14 --> File loaded: application/controllers/make.php
+DEBUG - 2013-11-27 05:11:14 --> File loaded: application/controllers/order_cancellation.php
+DEBUG - 2013-11-27 05:11:14 --> File loaded: application/controllers/password_hash.php
+DEBUG - 2013-11-27 05:11:14 --> File loaded: application/controllers/processing_type.php
+DEBUG - 2013-11-27 05:11:14 --> File loaded: application/controllers/productPrice.php
+DEBUG - 2013-11-27 05:11:14 --> File loaded: application/controllers/product_string_facet_value.php
+DEBUG - 2013-11-27 05:11:14 --> Model Class Initialized
+DEBUG - 2013-11-27 05:11:14 --> ControllerList class already loaded. Second attempt ignored.
+DEBUG - 2013-11-27 05:11:14 --> File loaded: application/views/Front_view.php
+DEBUG - 2013-11-27 05:11:14 --> Grocery_CRUD class already loaded. Second attempt ignored.
+DEBUG - 2013-11-27 05:11:14 --> Grocery_CRUD class already loaded. Second attempt ignored.
+DEBUG - 2013-11-27 05:11:14 --> Config file loaded: application/config/grocery_crud.php
+DEBUG - 2013-11-27 05:11:14 --> Model Class Initialized
+DEBUG - 2013-11-27 05:11:14 --> Model Class Initialized
+DEBUG - 2013-11-27 05:11:14 --> File loaded: application/views/grocery_crud_view.php
+DEBUG - 2013-11-27 05:11:14 --> Final output sent to browser
+DEBUG - 2013-11-27 05:11:14 --> Total execution time: 1.0330
+DEBUG - 2013-11-27 05:11:16 --> Config Class Initialized
+DEBUG - 2013-11-27 05:11:16 --> Hooks Class Initialized
+DEBUG - 2013-11-27 05:11:16 --> Utf8 Class Initialized
+DEBUG - 2013-11-27 05:11:16 --> UTF-8 Support Enabled
+DEBUG - 2013-11-27 05:11:16 --> URI Class Initialized
+DEBUG - 2013-11-27 05:11:16 --> Router Class Initialized
+DEBUG - 2013-11-27 05:11:16 --> Output Class Initialized
+DEBUG - 2013-11-27 05:11:16 --> Security Class Initialized
+DEBUG - 2013-11-27 05:11:16 --> Input Class Initialized
+DEBUG - 2013-11-27 05:11:16 --> XSS Filtering completed
+DEBUG - 2013-11-27 05:11:16 --> XSS Filtering completed
+DEBUG - 2013-11-27 05:11:16 --> XSS Filtering completed
+DEBUG - 2013-11-27 05:11:16 --> CRSF cookie Set
+DEBUG - 2013-11-27 05:11:16 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-11-27 05:11:16 --> Language Class Initialized
+DEBUG - 2013-11-27 05:11:16 --> Loader Class Initialized
+DEBUG - 2013-11-27 05:11:16 --> Helper loaded: url_helper
+DEBUG - 2013-11-27 05:11:16 --> Database Driver Class Initialized
+DEBUG - 2013-11-27 05:11:16 --> Session Class Initialized
+DEBUG - 2013-11-27 05:11:16 --> Helper loaded: string_helper
+DEBUG - 2013-11-27 05:11:16 --> Session garbage collection performed.
+DEBUG - 2013-11-27 05:11:16 --> Session routines successfully run
+DEBUG - 2013-11-27 05:11:16 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2013-11-27 05:11:16 --> Cart Class Initialized
+DEBUG - 2013-11-27 05:11:16 --> Model Class Initialized
+DEBUG - 2013-11-27 05:11:16 --> Model Class Initialized
+DEBUG - 2013-11-27 05:11:16 --> Controller Class Initialized
+DEBUG - 2013-11-27 05:11:16 --> Helper loaded: form_helper
+DEBUG - 2013-11-27 05:11:16 --> Helper loaded: html_helper
+DEBUG - 2013-11-27 05:11:16 --> Model Class Initialized
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/Accountlist.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/Bool_Facet.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/Bool_Facet_Value.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/Bool_Facet_Value_Product.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/Bool_Facet_Value_Vehicle.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/Branch.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/Branch_Inventory_Received_Date.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/Branch_Inventory_Request.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/Branch_Inventory_Request_Product.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/Branch_Inventory_Return.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/Branch_Inventory_Return_Product.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/CC_Payment.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/Cart.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/Cash_Payment.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/Country.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/Department.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/FI.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/Front.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/Int_Facet.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/Int_Facet_Value_Product.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/Int_Facet_Value_Vehicle.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/Job.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/Job_Role.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/Manufacturer.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/Order.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/OrderHistory.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/Order_Product.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/Order_Return.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/Order_Return_Product.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/Order_Ship.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/Product.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/Product_Category.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/Product_Condition.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/Product_Vehicle.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/Reason.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/Register.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/Role.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/Role_Permission.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/SelfServiceArea.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/State.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/String_Facet_Value_Product.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/String_Facet_Value_Vehicle.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/Supervisor_Pairing.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/Time_Period.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/UserAccountEdit.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/Vehicle.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/Vehicle_Model.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/Vendor_Product_Price.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/Vendors.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/WorkHistory.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/employee_branch_history.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/employee_clock.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/employee_reimbursement.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/float_facet.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/float_facet_value.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/float_facet_value_product.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/float_facet_value_vehicle.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/held_product.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/int_facet_value.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/job_pay.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/job_posting.php
+DEBUG - 2013-11-27 05:11:16 --> File loaded: application/controllers/job_posting_filling.php
+DEBUG - 2013-11-27 05:11:17 --> File loaded: application/controllers/make.php
+DEBUG - 2013-11-27 05:11:17 --> File loaded: application/controllers/order_cancellation.php
+DEBUG - 2013-11-27 05:11:17 --> File loaded: application/controllers/password_hash.php
+DEBUG - 2013-11-27 05:11:17 --> File loaded: application/controllers/processing_type.php
+DEBUG - 2013-11-27 05:11:17 --> File loaded: application/controllers/productPrice.php
+DEBUG - 2013-11-27 05:11:17 --> File loaded: application/controllers/product_string_facet_value.php
+DEBUG - 2013-11-27 05:11:17 --> Model Class Initialized
+DEBUG - 2013-11-27 05:11:17 --> ControllerList class already loaded. Second attempt ignored.
+DEBUG - 2013-11-27 05:11:17 --> Model Class Initialized
+DEBUG - 2013-11-27 05:11:17 --> ControllerList class already loaded. Second attempt ignored.
+DEBUG - 2013-11-27 05:11:17 --> File loaded: application/views/Front_view.php
+DEBUG - 2013-11-27 05:11:17 --> ControllerList class already loaded. Second attempt ignored.
+DEBUG - 2013-11-27 05:11:17 --> File loaded: application/views/Dashboard_view.php
+DEBUG - 2013-11-27 05:11:17 --> Final output sent to browser
+DEBUG - 2013-11-27 05:11:17 --> Total execution time: 1.0690
