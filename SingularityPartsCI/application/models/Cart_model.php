@@ -18,18 +18,18 @@
 			{
                 $ccdata['security_code'] =  $this->input->post('Code');
 				$ccdata['amount'] = $amountDue;
-				$ccdata['billing_address1'] = $data['address1'];
-				$ccdata['billing_address2'] = $data['address'];
-				$ccdata['billing_name'] = $data['name'];
-				$ccdata['City'] = $data['City'];
-				$ccdata['state'] = $data['State'];
-				$ccdata['postcode'] = $data['zipcode'];
+				$ccdata['billing_address1'] = $this->input->post('Address1');
+				$ccdata['billing_address2'] = $this->input->post('Address2');
+				$ccdata['billing_name'] = $this->input->post('Code');
+				$ccdata['City'] = $this->input->post('City');
+				$ccdata['state'] = $this->input->post('state');
+				$ccdata['postcode'] = $this->input->post('Zipcode');
 				$ccdata['exp_date'] = $this->input->post('exp_year') . '-' .$this->input->post('exp_month'). '-1' ;
 				$clear_cc = $this->input->post('CC');
 				$trim_cc = trim($clear_cc);
 				$ccdata['cc_number'] = $trim_cc;
 				$ccdata['order_id'] = $order_id;
-				$this->db->insert('cc_payments', $ccdata);
+				$this->db->insert('cc_payment', $ccdata);
 			}	
 			
         }

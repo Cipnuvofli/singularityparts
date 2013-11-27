@@ -189,13 +189,14 @@ class Cart extends CI_Controller{
 							$this->load->model('User_model');
 							$data['states'] = $this->user_model->get_states();
 							$this->load->view('FI', $data);
-							$this->load->view('Failure');
+							$this->load->view('cfailure');
                         }
                         else
                         {
                                 $this->Cart_model->checkoutdb();
-								$this->cart->destroy();
-                                $this->load->view('success');
+								//$this->cart->destroy();
+								$this->load->view('FI', $data);
+                                $this->load->view('csuccess');
                        
                         }
 

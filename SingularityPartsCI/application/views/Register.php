@@ -44,7 +44,7 @@ Branch*:
 	<option value="0">--Select--</option>
     <?php foreach($branches as $branch): ?>
 		<?php echo "<option value=\"$branch->branch_id\">
-			$branch->name; $branch->street_no $branch->street_name; $branch->city_name, $branch->state_name, $branch->country_name, $branch->postcode
+			 $branch->street_no $branch->street_name; $branch->city_name, $branch->state_name, $branch->country_name, $branch->postcode
 			</option>"; ?>
 	<?php endforeach; ?>
 </select>
@@ -54,7 +54,7 @@ Car:
 <select name = "vehicle">
 	<option value="0">--Select--</option>
     <?php foreach($cars as $car): ?>
-		<?php echo "<option value=\"$car->vehicle_id\">$car->make_name $car->model_name $car->model_year $car->vehicle_id</option>"; ?>
+		<?php echo "<option value=\"$car->vehicle_id\">$car->make_name $car->model_name $car->model_year</option>"; ?>
 	<?php endforeach; ?>
 </select>
 </p>
