@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2013 at 01:29 AM
+-- Generation Time: Nov 27, 2013 at 02:08 AM
 -- Server version: 5.6.11
 -- PHP Version: 5.5.3
 
@@ -331,7 +331,7 @@ CREATE TABLE IF NOT EXISTS `ci_sessions` (
 --
 
 INSERT INTO `ci_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('b42e4651d75beb03aa450ef93cc2c68f', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:25.0) Gecko/20100101 Firefox/25.0', 1385509995, 'a:4:{s:9:"user_data";s:0:"";s:9:"person_id";s:2:"21";s:9:"logged_in";b:1;s:13:"cart_contents";a:3:{s:32:"698d51a19d8a121ce581499d7b701668";a:7:{s:5:"rowid";s:32:"698d51a19d8a121ce581499d7b701668";s:2:"id";s:1:"1";s:3:"qty";s:1:"1";s:5:"price";s:2:"42";s:4:"name";s:14:"Battery Mark 1";s:7:"options";a:2:{s:12:"condition_id";s:1:"1";s:10:"country_id";s:1:"1";}s:8:"subtotal";i:42;}s:11:"total_items";i:1;s:10:"cart_total";i:42;}}');
+('ff73654f96e79b6e316b714d807d3e98', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:25.0) Gecko/20100101 Firefox/25.0', 1385514201, 'a:4:{s:9:"user_data";s:0:"";s:9:"person_id";s:2:"21";s:9:"logged_in";b:1;s:13:"cart_contents";a:3:{s:32:"698d51a19d8a121ce581499d7b701668";a:7:{s:5:"rowid";s:32:"698d51a19d8a121ce581499d7b701668";s:2:"id";s:1:"1";s:3:"qty";s:1:"1";s:5:"price";s:2:"42";s:4:"name";s:14:"Battery Mark 1";s:7:"options";a:2:{s:12:"condition_id";s:1:"1";s:10:"country_id";s:1:"1";}s:8:"subtotal";i:42;}s:11:"total_items";i:1;s:10:"cart_total";i:42;}}');
 
 -- --------------------------------------------------------
 
@@ -1166,7 +1166,7 @@ CREATE TABLE IF NOT EXISTS `role_permission` (
   `can_grant_read` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `roleconstraint_1234566` (`role_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='stores the specific permissions associated with each role. p /* comment truncated */ /*ermissions include:\n_read\n_add\n_modify\n_delete \n_xown - you can only exercise right x on your own rows\n_grant y - you can give others right y. */' AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='stores the specific permissions associated with each role. p /* comment truncated */ /*ermissions include:\n_read\n_add\n_modify\n_delete \n_xown - you can only exercise right x on your own rows\n_grant y - you can give others right y. */' AUTO_INCREMENT=27 ;
 
 --
 -- Dumping data for table `role_permission`
@@ -1183,7 +1183,22 @@ INSERT INTO `role_permission` (`id`, `role_id`, `table_name`, `can_read`, `can_a
 (8, 1, 'job_role', 1, 1, 1, 1, 1, 1, 1, 1),
 (9, 1, 'manufacturer', 1, 1, 1, 1, 1, 1, 1, 1),
 (10, 1, 'work_history', 1, 1, 1, 1, 1, 1, 1, 1),
-(11, 1, 'person', 1, 1, 1, 1, 1, 1, 1, 1);
+(11, 1, 'person', 1, 1, 1, 1, 1, 1, 1, 1),
+(12, 1, 'password_hash', 1, 1, 1, 1, 1, 1, 1, 1),
+(13, 1, 'vehicle', 1, 1, 1, 1, 1, 1, 1, 1),
+(14, 1, 'vehicle_model', 1, 1, 1, 1, 1, 1, 1, 1),
+(15, 1, 'vendor', 1, 1, 1, 1, 1, 1, 1, 1),
+(16, 1, 'vendor_product_price', 1, 1, 1, 1, 1, 1, 1, 1),
+(17, 1, 'sf_config', 1, 1, 1, 1, 1, 1, 1, 1),
+(18, 1, 'product_condition', 1, 1, 1, 1, 1, 1, 1, 1),
+(19, 1, 'make', 1, 1, 1, 1, 1, 1, 1, 1),
+(20, 1, 'product_category', 1, 1, 1, 1, 1, 1, 1, 1),
+(21, 1, 'branch', 1, 1, 1, 1, 1, 1, 1, 1),
+(22, 1, 'branch_inventory_received_date', 1, 1, 1, 1, 1, 1, 1, 1),
+(23, 1, 'branch_inventory_request', 1, 1, 1, 1, 1, 1, 1, 1),
+(24, 1, 'branch_inventory_request_product', 1, 1, 1, 1, 1, 1, 1, 1),
+(25, 1, 'cash_payment', 1, 1, 1, 1, 1, 1, 1, 1),
+(26, 1, 'cc_payment', 1, 1, 1, 1, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
